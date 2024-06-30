@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 00:13:53 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/29 23:07:52 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/06/30 23:05:45 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,13 @@
 # define TRANSP 0xFF000000
 
 /*Structs declaration*/
+typedef struct s_data		t_data; //general program data
 typedef struct s_map		t_map; 	//main map and mimimap info and value
 typedef struct s_visual		t_visual; //mlx textures, images and other visuals
 typedef struct s_player		t_player; //first person view player info and values
 typedef struct s_rays		t_rays; //raycasting variables and values
-typedef struct s_data		t_data; //general program data
 
-typedef struct s_data
-{
-	t_map		maps;
-	t_visual	imgs;
-	t_player	ply;
-	t_rays		rc;
-	mlx_t		*game;
-	int			exit_code;
-}	t_data;
-
+/*Structs definition*/
 typedef struct s_map
 {
 	t_data		*dpt;
@@ -72,6 +63,10 @@ typedef struct s_map
 	int			map_height;
 	int			pix_width;
 	int			pix_height;
+	int			minimap_w;
+	int			minimap_h;
+	float		map_scale_x;
+	float		map_scale_y;
 }	t_map;
 
 typedef struct s_player
@@ -88,7 +83,8 @@ typedef struct s_visual
 	int			f_color;
 	int			c_color;
 	mlx_image_t	*game_view;
-	mlx_image_t	*minimap;
+	mlx_image_t	*mini_src;
+	mlx_image_t	*mini_view;
 }	t_visual;
 
 typedef struct s_rays
@@ -98,11 +94,19 @@ typedef struct s_rays
 	float	incr_ang;
 	double 	ray_x;
 	double	ray_y;
-	float	map_scale_x;
-	float	map_scale_y;
 	float	wall_dist;
 	float	wall_height;
 }	t_rays;
+
+typedef struct s_data
+{
+	t_map		maps;
+	t_visual	imgs;
+	t_player	ply;
+	t_rays		rc;
+	mlx_t		*game;
+	int			exit_code;
+}	t_data;
 
 /*--------_SRC_FUNCTIONS_--------*/
 /*init.c*/
@@ -114,6 +118,21 @@ void			ft_place_player(t_data *d);
 void			ft_load_images(t_data *d);
 void			ft_set_background(mlx_image_t *img);
 void			ft_create_minipmap(t_data *d);
-void			ft_paint_map(t_data *d, size_t w, size_t h);
+void			ft_paint_minimap(t_data *d, size_t w, size_t h);
+/*key_control.c*/
+void			ft_move_right(t_data *d);
+void			ft_move_left(t_data *d);
+void			ft_move_down(t_data *d);
+void			ft_move_up(t_data *d);
+void			ft_key_control(t_data *d);
+/*raycast.c*/
+void			ft_raycast(t_data *d, t_rays *rc);
+void			ft_wall_render(t_data *d, t_rays *rc, int ray_num);
+void 			ft_draw_wall(t_data *d, t_rays *rc, int win_x, int col_width);
+float			ft_wall_distance(t_data *d, t_rays *rc);
+int				ft_wall_heigth(float distance, float plane);
+/*main.c*/
+void			ft_game_hook(void *param);
+void			ft_paint_miniplayer(t_data *d);
 
 # endif

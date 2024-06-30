@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:58:49 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/06/29 23:13:05 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/06/30 20:47:47 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_fake_map_parse(t_data *d)
 	d->maps.map_width = 8;
 	d->maps.pix_height = d->maps.map_height * CELL;
 	d->maps.pix_width = d->maps.map_width * CELL;
+	d->maps.minimap_w = d->maps.map_width * MINICELL; 
+	d->maps.minimap_h = d->maps.map_height * MINICELL;
 	d->imgs.c_color = BLUE;
 	d->imgs.f_color = GREEN;
 	ft_place_player(d);
