@@ -27,7 +27,8 @@
 # define HEIGTH 600 //Screen height in pixels
 # define MINI_W (WIDTH / 4) //Minimap width in pixels
 # define MINI_H (HEIGTH / 4) //Minimap height in pixels
-# define CELL 32 //Pixel size of each "cell" of the map - maybe we won't need to use it
+# define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
+# define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
 # define FOV (60 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
 # define N_RAYS 120 //Number of rays to cast - has to be proportional to FOV value!
@@ -109,5 +110,10 @@ void			ft_init(t_data *d);
 void			ft_fake_map_parse(t_data *d);
 void			ft_map_maker(t_data *d);
 void			ft_place_player(t_data *d);
+/*load_images.c*/
+void			ft_load_images(t_data *d);
+void			ft_set_background(mlx_image_t *img);
+void			ft_create_minipmap(t_data *d);
+void			ft_paint_map(t_data *d, size_t w, size_t h);
 
 # endif
