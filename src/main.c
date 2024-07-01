@@ -19,8 +19,13 @@ void	ft_paint_miniplayer(t_data *d)
 	int		i;
 	int		j;
 
+	//maybe the scale is the problem? print both scales and mini_player_position
+	printf("X_SCALE = %f\n", d->maps.map_scale_x);
+	printf("Y_SCALE = %f\n", d->maps.map_scale_y);
 	player_x = d->ply.x * d->maps.map_scale_x;
 	player_y = d->ply.y * d->maps.map_scale_y;
+	printf("player_y_mini = %f\n", player_y);
+	printf("player_x_mini = %f\n", player_x);
 	i = -1;
 	while (i < 2)
 	{

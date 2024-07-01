@@ -55,7 +55,7 @@ void	ft_set_background(mlx_image_t *img)
 		x = -1;
 		while ((unsigned int)++x < img->width)
 		{
-			if ((unsigned int)y < (img->width / 2))
+			if ((unsigned int)y < (img->height / 2))
 				mlx_put_pixel(img, x, y, BLUE);
 			else
 				mlx_put_pixel(img, x, y, GREEN);
