@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 00:12:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/30 23:13:57 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/01 08:58:00 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,8 @@ void	ft_paint_miniplayer(t_data *d)
 	int		i;
 	int		j;
 
-	//maybe the scale is the problem? print both scales and mini_player_position
-	printf("X_SCALE = %f\n", d->maps.map_scale_x);
-	printf("Y_SCALE = %f\n", d->maps.map_scale_y);
 	player_x = d->ply.x * d->maps.map_scale_x;
 	player_y = d->ply.y * d->maps.map_scale_y;
-	printf("player_y_mini = %f\n", player_y);
-	printf("player_x_mini = %f\n", player_x);
 	i = -1;
 	while (i < 2)
 	{
@@ -49,7 +44,6 @@ void	ft_game_hook(void *param)
 	{
 		ft_key_control(d);
 		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
-		printf("aqui abajo peta\n");
 		ft_paint_miniplayer(d);
 		ft_raycast(d, &d->rc);
 	}
