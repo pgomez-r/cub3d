@@ -20,8 +20,9 @@ void	ft_raycast(t_data *d, t_rays *rc)
 
 	rc->incr_ang = FOV / (N_RAYS - 1);
 	rc->curr_ang = d->ply.ang - (FOV / 2);
-	i = -1;
-	while (++i < N_RAYS)
+	ft_set_background(d->imgs.game_view);
+	i = N_RAYS;
+	while (--i <= 0)
 	{
 		rc->ray_x = d->ply.x;
 		rc->ray_y = d->ply.y;
@@ -38,13 +39,22 @@ void	ft_raycast(t_data *d, t_rays *rc)
 	}
 }
 
+/*This function bellow is in working progress, still needs many tests*/
 void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
 {
-	int	win_x;
-	int	col_width;
+	double	win_x;
+	double	col_width;
+	int		end_x;
 
-	col_width = d->imgs.game_view->width / N_RAYS;
-	win_x = ray_num * col_width;
+	col_width = (double)WIDTH / N_RAYS;
+	if (ray_num == 0)
+		win_x = 0;
+	else
+		win_x = round(ray_num * col_width);
+	if (ray_num == N_RAYS - 1)
+		end_x = WIDTH;
+	else
+		end_x = round((ray_num + 1) * col_width) - 1;
 	rc->wall_dist = ft_wall_distance(d, rc);
 	rc->wall_height = ft_wall_heigth(rc->wall_dist, PP);
 	ft_draw_wall(d, rc, win_x, col_width);
@@ -58,13 +68,13 @@ void ft_draw_wall(t_data *d, t_rays *rc, int win_x, int col_width)
 	int	mid_win;
 	int	x;
 
-	mid_win = d->imgs.game_view->height / 2;
+	mid_win = HEIGTH / 2;
 	start = mid_win - (int)(rc->wall_height / 2);
 	if (start < 0) 
 		start = 0;
 	end = start + (int)rc->wall_height;
-	if (end >= (int)d->imgs.game_view->height)
-		end = d->imgs.game_view->height - 1;
+	if (end >= HEIGTH)
+		end = HEIGTH - 1;
 	x = win_x;
 	while (x < (win_x + col_width))
 	{
@@ -89,7 +99,7 @@ int	ft_wall_heigth(float distance, float plane)
 	float	wall_gh;
 	float	height;
 
-	wall_gh = 64.0;
+	wall_gh = (float)CELL;
 	height = (wall_gh * plane) / distance;
 	if (height < 1.0)
 		height = 1.0;
