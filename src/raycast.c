@@ -6,31 +6,32 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:58:21 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/06/30 22:11:19 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/02 05:56:53 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * TODO: shorten variable name 'map_scale_x' (and '..._y') to fit 80chars
+ */
+
 void	ft_raycast(t_data *d, t_rays *rc)
 {
 	int		i;
-	int		mini_x;
-	int		mini_y;
 
 	rc->incr_ang = FOV / (N_RAYS - 1);
 	rc->curr_ang = d->ply.ang - (FOV / 2);
 	ft_set_background(d->imgs.game_view);
 	i = N_RAYS;
-	while (--i <= 0)
+	while (--i >= 0)
 	{
 		rc->ray_x = d->ply.x;
 		rc->ray_y = d->ply.y;
-		mini_x = (int)(rc->ray_x * d->maps.map_scale_x);
-		mini_y = (int)(rc->ray_y * d->maps.map_scale_y);
 		while (d->maps.map[(int)rc->ray_y / CELL][(int)rc->ray_x / CELL] != '1')
 		{
-			mlx_put_pixel(d->imgs.mini_src, mini_x, mini_y, GREEN);
+			mlx_put_pixel(d->imgs.mini_src, (int)(rc->ray_x * d->maps.map_scale_x),
+				(int)(rc->ray_y * d->maps.map_scale_y), PINK);
 			rc->ray_y -= sin(rc->curr_ang);
 			rc->ray_x += cos(rc->curr_ang);
 		}
@@ -57,7 +58,7 @@ void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
 		end_x = round((ray_num + 1) * col_width) - 1;
 	rc->wall_dist = ft_wall_distance(d, rc);
 	rc->wall_height = ft_wall_heigth(rc->wall_dist, PP);
-	ft_draw_wall(d, rc, win_x, col_width);
+	ft_draw_wall(d, rc, win_x, (end_x - win_x) + 1);
 }
 
 void ft_draw_wall(t_data *d, t_rays *rc, int win_x, int col_width)
