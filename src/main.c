@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 00:12:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/01 08:58:00 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/02 22:12:53 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_game_hook(void *param)
 		ft_key_control(d);
 		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
 		ft_paint_miniplayer(d);
-		ft_raycast(d, &d->rc);
+		ft_raycast(d, &d->rc, d->maps.map_scale_x, d->maps.map_scale_y);
 	}
 }
 

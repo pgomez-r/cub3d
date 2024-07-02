@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 00:13:53 by codespace         #+#    #+#             */
-/*   Updated: 2024/06/30 23:05:45 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/02 16:50:32 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
 # define FOV (60 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
-# define N_RAYS 120 //Number of rays to cast - has to be proportional to FOV value!
+# define N_RAYS (WIDTH) //Number of rays to cast - has to be proportional to FOV value!
 # define PP ((WIDTH / 2) / tan(FOV / 2))//Projection plane
 # define NORTH (M_PI / 2)
 # define EAST (2 * M_PI)
@@ -126,7 +126,7 @@ void			ft_move_down(t_data *d);
 void			ft_move_up(t_data *d);
 void			ft_key_control(t_data *d);
 /*raycast.c*/
-void			ft_raycast(t_data *d, t_rays *rc);
+void			ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y);
 void			ft_wall_render(t_data *d, t_rays *rc, int ray_num);
 void 			ft_draw_wall(t_data *d, t_rays *rc, int win_x, int col_width);
 float			ft_wall_distance(t_data *d, t_rays *rc);

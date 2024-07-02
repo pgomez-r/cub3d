@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:58:21 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/02 05:56:53 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/02 16:51:45 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * TODO: shorten variable name 'map_scale_x' (and '..._y') to fit 80chars
  */
 
-void	ft_raycast(t_data *d, t_rays *rc)
+void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 {
 	int		i;
 
@@ -30,8 +30,8 @@ void	ft_raycast(t_data *d, t_rays *rc)
 		rc->ray_y = d->ply.y;
 		while (d->maps.map[(int)rc->ray_y / CELL][(int)rc->ray_x / CELL] != '1')
 		{
-			mlx_put_pixel(d->imgs.mini_src, (int)(rc->ray_x * d->maps.map_scale_x),
-				(int)(rc->ray_y * d->maps.map_scale_y), PINK);
+			mlx_put_pixel(d->imgs.mini_src, (int)(rc->ray_x * scale_x),
+				(int)(rc->ray_y * scale_y), PINK);
 			rc->ray_y -= sin(rc->curr_ang);
 			rc->ray_x += cos(rc->curr_ang);
 		}
