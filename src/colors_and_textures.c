@@ -6,7 +6,7 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 00:58:22 by gfredes-          #+#    #+#             */
-/*   Updated: 2024/07/03 21:51:51 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 23:08:05 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,21 @@ void	ft_get_color(char **texture, t_info_map *info_map)
 	ft_free_split(color);
 }
 
+void	ft_remove_nl(char **texture)
+{
+	char	*aux;
+
+	aux = ft_strtrim(texture[1], "\n");
+	free (texture[1]);
+	texture[1] = aux;
+}
+
 void	ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n)
 {
 	char	**texture;
 
 	texture = ft_split(line, ' ');
+	ft_remove_nl(texture);
 	if (!texture || texture[2])
 	{
 		write (2, "Error: Invalid map\n", 19);
