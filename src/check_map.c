@@ -6,13 +6,13 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:54:54 by gfredes-          #+#    #+#             */
-/*   Updated: 2024/07/03 18:48:51 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:49:15 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_line_map(char *line, int mode)
+int	ft_check_line_map(char *line, int mode)
 {
 	int	i;
 	int	map;
@@ -31,7 +31,7 @@ int	check_line_map(char *line, int mode)
 		}
 		else
 		{
-			invalid_map(mode);
+			ft_invalid_map(mode);
 			return (0);
 		}
 	}
@@ -41,7 +41,7 @@ int	check_line_map(char *line, int mode)
 		return (0);
 }
 
-void	check_all_ones(char *line)
+void	ft_check_all_ones(char *line)
 {
 	int	x;
 
@@ -60,7 +60,7 @@ void	check_all_ones(char *line)
 	return ;
 }
 
-int	check_valid_neighbor(t_info_map *info_map, int y, int x)
+int	ft_check_valid_neighbor(t_info_map *info_map, int y, int x)
 {
 	if (info_map->map[y][x] != '1' && info_map->map[y][x] != '0'
 		&& info_map->map[y][x] != 'N' && info_map->map[y][x] != 'S'
@@ -70,7 +70,7 @@ int	check_valid_neighbor(t_info_map *info_map, int y, int x)
 		return (0);
 }
 
-void	check_map_limits(t_info_map *info_map, int y)
+void	ft_check_map_limits(t_info_map *info_map, int y)
 {
 	int	x;
 
@@ -85,12 +85,12 @@ void	check_map_limits(t_info_map *info_map, int y)
 			|| info_map->map[y][x] == 'W')
 		{
 			if (x == 0 || x == info_map->map_width - 1
-				|| check_valid_neighbor(info_map, y, x - 1)
-				|| check_valid_neighbor(info_map, y, x + 1)
-				|| check_valid_neighbor(info_map, y - 1, x)
-				|| check_valid_neighbor(info_map, y + 1, x))
+				|| ft_check_valid_neighbor(info_map, y, x - 1)
+				|| ft_check_valid_neighbor(info_map, y, x + 1)
+				|| ft_check_valid_neighbor(info_map, y - 1, x)
+				|| ft_check_valid_neighbor(info_map, y + 1, x))
 			{
-				invalid_map(1);
+				ft_invalid_map(1);
 				return ;
 			}
 			x++;
@@ -98,7 +98,7 @@ void	check_map_limits(t_info_map *info_map, int y)
 	}
 }
 
-void	check_closed_map(t_info_map *info_map)
+void	ft_check_closed_map(t_info_map *info_map)
 {
 	int	y;
 
@@ -106,9 +106,9 @@ void	check_closed_map(t_info_map *info_map)
 	while (y < info_map->map_height)
 	{
 		if (y == 0 || y == info_map->map_height - 1)
-			check_all_ones(info_map->map[y]);
+			ft_check_all_ones(info_map->map[y]);
 		else
-			check_map_limits(info_map, y);
+			ft_check_map_limits(info_map, y);
 		y++;
 	}
 }

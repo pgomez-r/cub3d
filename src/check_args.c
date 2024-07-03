@@ -6,13 +6,13 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:32:47 by gfredes-          #+#    #+#             */
-/*   Updated: 2024/06/30 16:33:42 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:48:22 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_file_name(char *argv)
+static int	ft_check_file_name(char *argv)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ static int	check_file_name(char *argv)
 	return (0);
 }
 
-void	check_args(int argc, char **argv)
+void	ft_check_args(int argc, char **argv)
 {
 	int	fd;
 
@@ -36,7 +36,7 @@ void	check_args(int argc, char **argv)
 	}
 	fd = open(argv[1], O_RDONLY);
 	close(fd);
-	if (fd < 0 || !check_file_name(argv[1]))
+	if (fd < 0 || !ft_check_file_name(argv[1]))
 	{
 		write(2, "Error: Invalid file\n", 20);
 		printf("Usage: ./cub3d <map_name>.cub\n");

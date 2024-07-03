@@ -6,25 +6,25 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 00:58:22 by gfredes-          #+#    #+#             */
-/*   Updated: 2024/07/03 18:49:19 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:51:51 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_texture(char **texture, t_info_map *info_map)
+void	ft_get_texture(char **texture, t_info_map *info_map)
 {
-	if (!strncmp(texture[0], "NO", 3))
+	if (!ft_strncmp(texture[0], "NO", 3))
 		info_map->north_texture_path = ft_strdup(texture[1]);
-	else if (!strncmp(texture[0], "SO", 3))
+	else if (!ft_strncmp(texture[0], "SO", 3))
 		info_map->south_texture_path = ft_strdup(texture[1]);
-	else if (!strncmp(texture[0], "EA", 3))
+	else if (!ft_strncmp(texture[0], "EA", 3))
 		info_map->east_texture_path = ft_strdup(texture[1]);
-	else if (!strncmp(texture[0], "WE", 3))
+	else if (!ft_strncmp(texture[0], "WE", 3))
 		info_map->west_texture_path = ft_strdup(texture[1]);
 }
 
-void	get_color(char **texture, t_info_map *info_map)
+void	ft_get_color(char **texture, t_info_map *info_map)
 {
 	char	**color;
 
@@ -35,7 +35,7 @@ void	get_color(char **texture, t_info_map *info_map)
 		exit (1);
 		return ;
 	}
-	if (!strncmp(texture[0], "F", 2))
+	if (!ft_strncmp(texture[0], "F", 2))
 	{
 		info_map->floor[0] = ft_atoi(color[0]);
 		info_map->floor[1] = ft_atoi(color[1]);
@@ -47,10 +47,10 @@ void	get_color(char **texture, t_info_map *info_map)
 		info_map->ceiling[1] = ft_atoi(color[1]);
 		info_map->ceiling[2] = ft_atoi(color[2]);
 	}
-	free_split(color);
+	ft_free_split(color);
 }
 
-void	get_textures_and_colors(char *line, t_info_map *info_map, int *n)
+void	ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n)
 {
 	char	**texture;
 
@@ -62,16 +62,16 @@ void	get_textures_and_colors(char *line, t_info_map *info_map, int *n)
 		exit (1);
 		return ;
 	}
-	if (!strncmp(texture[0], "NO", 3) || !strncmp(texture[0], "SO", 3)
-		|| !strncmp(texture[0], "EA", 3) || !strncmp(texture[0], "WE", 3))
+	if (!ft_strncmp(texture[0], "NO", 3) || !ft_strncmp(texture[0], "SO", 3)
+		|| !ft_strncmp(texture[0], "EA", 3) || !ft_strncmp(texture[0], "WE", 3))
 	{
-		get_texture(texture, info_map);
+		ft_get_texture(texture, info_map);
 		*n += 1;
 	}
-	else if (!strncmp(texture[0], "F", 2) || !strncmp(texture[0], "C", 2))
+	else if (!ft_strncmp(texture[0], "F", 2) || !ft_strncmp(texture[0], "C", 2))
 	{
-		get_color(texture, info_map);
+		ft_get_color(texture, info_map);
 		*n += 1;
 	}
-	free_split(texture);
+	ft_free_split(texture);
 }

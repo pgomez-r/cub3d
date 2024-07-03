@@ -6,13 +6,13 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 04:07:32 by gfredes-          #+#    #+#             */
-/*   Updated: 2024/07/03 19:12:55 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:58:30 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	get_line_map(char *line, t_info_map *info_map, int y)
+static void	ft_get_line_map(char *line, t_info_map *info_map, int y)
 {
 	int	x;
 
@@ -41,21 +41,21 @@ static void	get_line_map(char *line, t_info_map *info_map, int y)
 	}
 }
 
-static void	get_map(char *line, t_info_map *info_map, int *n)
+static void	ft_get_map(char *line, t_info_map *info_map, int *n)
 {
 	int	y;
 
 	y = *n - 6;
 	if (!ft_strncmp(line, "\n", 2) && info_map->map_status == 1)
 		info_map->map_status = 2;
-	if (check_line_map(line, 1) && (info_map->map_status == 0
+	if (ft_check_line_map(line, 1) && (info_map->map_status == 0
 			|| info_map->map_status == 1))
 	{
 		if (info_map->map_status == 0)
 			info_map->map_status = 1;
 		if (info_map->map_status == 1)
 		{
-			get_line_map(line, info_map, y);
+			ft_get_line_map(line, info_map, y);
 			*n += 1;
 		}
 	}
@@ -68,7 +68,7 @@ static void	get_map(char *line, t_info_map *info_map, int *n)
 	}
 }
 
-static void	get_line_info(char *line, int fd, t_info_map *info_map, int *n)
+static void	ft_get_line_info(char *line, int fd, t_info_map *info_map, int *n)
 {
 	while (*n < 7 && !ft_strncmp(line, "\n", 2))
 	{
@@ -76,13 +76,13 @@ static void	get_line_info(char *line, int fd, t_info_map *info_map, int *n)
 		line = get_next_line(fd);
 	}
 	if (line && line[0] && *n < 6)
-		get_textures_and_colors(line, info_map, n);
+		ft_get_textures_and_colors(line, info_map, n);
 	else if (line && line[0] && *n >= 6)
-		get_map(line, info_map, n);
+		ft_get_map(line, info_map, n);
 	free(line);
 }
 
-void	get_map_info(char *file, t_info_map *info_map)
+void	ft_get_map_info(char *file, t_info_map *info_map)
 {
 	char	*line;
 	int		n;
@@ -97,7 +97,7 @@ void	get_map_info(char *file, t_info_map *info_map)
 		exit(1);
 		return ;
 	}
-	get_map_size(fd, info_map);
+	ft_get_map_size(fd, info_map);
 	close(fd);
 	fd = open(file, O_RDONLY);
 	while (1)
@@ -105,8 +105,8 @@ void	get_map_info(char *file, t_info_map *info_map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		get_line_info(line, fd, info_map, &n);
+		ft_get_line_info(line, fd, info_map, &n);
 	}
-	check_closed_map(info_map);
+	ft_check_closed_map(info_map);
 	close (fd);
 }

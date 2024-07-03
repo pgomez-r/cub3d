@@ -6,13 +6,13 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:12:12 by gfredes-          #+#    #+#             */
-/*   Updated: 2024/07/03 19:07:47 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:55:38 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	get_width(char *line, t_info_map *info_map)
+void	ft_get_width(char *line, t_info_map *info_map)
 {
 	int	i;
 	int	width;
@@ -40,7 +40,7 @@ void	get_width(char *line, t_info_map *info_map)
 		info_map->map_width = width;
 }
 
-void	get_map_size(int fd, t_info_map *info_map)
+void	ft_get_map_size(int fd, t_info_map *info_map)
 {
 	char	*line;
 	int		count;
@@ -51,10 +51,10 @@ void	get_map_size(int fd, t_info_map *info_map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (check_line_map(line, 0))
+		if (ft_check_line_map(line, 0))
 		{
 			count++;
-			get_width(line, info_map);
+			ft_get_width(line, info_map);
 		}
 		free (line);
 	}
@@ -66,5 +66,5 @@ void	get_map_size(int fd, t_info_map *info_map)
 		exit(1);
 	}
 	else if (info_map->player != 1)
-		invalid_map(1);
+		ft_invalid_map(1);
 }

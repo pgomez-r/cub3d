@@ -6,7 +6,7 @@
 /*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 00:13:53 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/03 19:12:18 by gfredes-         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:57:23 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ typedef struct s_data
 /*--------_SRC_FUNCTIONS_--------*/
 /*init.c*/
 void		ft_init(t_data *d);
-void		ft_fake_map_parse(t_data *d);
+void		ft_map_parse(t_data *d, t_info_map *info_map);
 void		ft_map_maker(t_data *d);
 void		ft_place_player(t_data *d);
-t_info_map	init_map(void);
+t_info_map	ft_init_map(void);
 /*load_images.c*/
 void		ft_load_images(t_data *d);
 void		ft_set_background(mlx_image_t *img);
@@ -159,26 +159,26 @@ int			ft_wall_heigth(float distance, float plane);
 void		ft_game_hook(void *param);
 void		ft_paint_miniplayer(t_data *d);
 // check_args.c
-void		check_args(int argc, char **argv);
+void		ft_check_args(int argc, char **argv);
 // check_map.c
-int			check_line_map(char *line, int mode);
-void		check_all_ones(char *line);
-int			check_valid_neighbor(t_info_map *info_map, int y, int x);
-void		check_map_limits(t_info_map *info_map, int y);
-void		check_closed_map(t_info_map *info_map);
+int			ft_check_line_map(char *line, int mode);
+void		ft_check_all_ones(char *line);
+int			ft_check_valid_neighbor(t_info_map *info_map, int y, int x);
+void		ft_check_map_limits(t_info_map *info_map, int y);
+void		ft_check_closed_map(t_info_map *info_map);
 // colors_and_textures.c
-void		get_texture(char **texture, t_info_map *info_map);
-void		get_color(char **texture, t_info_map *info_map);
-void		get_textures_and_colors(char *line, t_info_map *info_map, int *n);
+void		ft_get_texture(char **texture, t_info_map *info_map);
+void		ft_get_color(char **texture, t_info_map *info_map);
+void		ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n);
 //error.c
-void		invalid_map(int mode);
+void		ft_invalid_map(int mode);
 // free.c
-void		free_split(char **split);
-void		free_map(t_info_map *info_map);
+void		ft_free_split(char **split);
+void		ft_free_map(t_info_map *info_map);
 // map_size.c
-void		get_width(char *line, t_info_map *info_map);
-void		get_map_size(int fd, t_info_map *info_map);
+void		ft_get_width(char *line, t_info_map *info_map);
+void		ft_get_map_size(int fd, t_info_map *info_map);
 // map.c
-void		get_map_info(char *file, t_info_map *info_map);
+void		ft_get_map_info(char *file, t_info_map *info_map);
 
 #endif
