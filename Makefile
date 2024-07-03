@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
+#    By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/06/30 21:43:51 by pgruz11          ###   ########.fr        #
+#    Updated: 2024/07/03 19:08:48 by gfredes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,18 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 # B_PATH	 = bonus/
 
-SRC      = main.c init.c key_control.c load_images.c raycast.c
+SRC      =	main.c \
+			init.c \
+			key_control.c \
+			load_images.c \
+			raycast.c \
+			check_args.c \
+			check_map.c \
+			colors_and_textures.c \
+			error.c \
+			free.c \
+			map_size.c \
+			map.c \
 
 SRCS	 = $(addprefix $(SRC_PATH), $(SRC))
 OBJ		 = $(SRC:.c=.o)

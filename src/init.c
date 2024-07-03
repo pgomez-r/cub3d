@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 14:58:49 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/06/30 20:47:47 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/03 19:04:49 by gfredes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_fake_map_parse(t_data *d)
 	d->maps.map_width = 8;
 	d->maps.pix_height = d->maps.map_height * CELL;
 	d->maps.pix_width = d->maps.map_width * CELL;
-	d->maps.minimap_w = d->maps.map_width * MINICELL; 
+	d->maps.minimap_w = d->maps.map_width * MINICELL;
 	d->maps.minimap_h = d->maps.map_height * MINICELL;
 	d->imgs.c_color = BLUE;
 	d->imgs.f_color = GREEN;
@@ -75,4 +75,29 @@ void	ft_init(t_data *d)
 	d->ply.dpt = d;
 	d->rc.dpt = d;
 	ft_fake_map_parse(d);
+}
+
+t_info_map	init_map(void)
+{
+	t_info_map	info_map;
+	int			i;
+
+	info_map.north_texture_path = NULL;
+	info_map.south_texture_path = NULL;
+	info_map.east_texture_path = NULL;
+	info_map.west_texture_path = NULL;
+	i = 0;
+	while (i < 3)
+	{
+		info_map.floor[i] = -1;
+		info_map.ceiling[i] = -1;
+		i++;
+	}
+	info_map.map_width = 0;
+	info_map.map_height = 0;
+	info_map.map = NULL;
+	info_map.map_status = 0;
+	info_map.player = 0;
+	info_map.player_view = '\0';
+	return (info_map);
 }
