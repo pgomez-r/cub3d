@@ -60,6 +60,7 @@ void	ft_init(t_data *d)
 	d->imgs.dpt = d;
 	d->ply.dpt = d;
 	d->rc.dpt = d;
+	d->tx.dpt = d;
 }
 
 t_info_map	ft_init_map(void)

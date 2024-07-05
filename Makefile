@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+         #
+#    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/07/03 19:08:48 by gfredes-         ###   ########.fr        #
+#    Updated: 2024/07/05 20:18:26 by pgruz11          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,9 @@ SRC      =	main.c \
 			free.c \
 			map_size.c \
 			map.c \
+			minimap.c \
+			wall_render.c \
+			wall_render_utils.c \
 
 SRCS	 = $(addprefix $(SRC_PATH), $(SRC))
 OBJ		 = $(SRC:.c=.o)

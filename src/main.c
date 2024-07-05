@@ -34,7 +34,6 @@ void	ft_game_hook(void *param)
 	d = (t_data *)param;
 	if (d->exit_code == 0)
 	{
-		//printf("P_ANGLE = %f\n", d->ply.ang * (180.0 / M_PI));
 		ft_key_control(d);
 		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
 		ft_paint_miniplayer(d);
@@ -54,12 +53,15 @@ int	main(int argc, char **argv)
 	ft_map_parse(&d, &info_map);
 	if (d.exit_code == 0)
 	{
-		d.game = mlx_init(WIDTH, HEIGTH, "CVB3D", false);
-		ft_load_images(&d);
-		mlx_loop_hook(d.game, ft_game_hook, &d);
-		mlx_loop(d.game);
-		mlx_terminate(d.game);
+		d.game = mlx_init(WIDTH, HEIGTH, NAME, false);
+		d.exit_code = ft_load_images(&d, &info_map);
+		if (d.exit_code == 0)
+		{
+			mlx_loop_hook(d.game, ft_game_hook, &d);
+			mlx_loop(d.game);
+			mlx_terminate(d.game);
+		}
 	}
 	ft_free_map(&info_map);
-	return (0);
+	return (d.exit_code);
 }
