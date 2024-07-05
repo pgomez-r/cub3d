@@ -4,50 +4,74 @@
 
 void	ft_move_up(t_data *d)
 {
-	int	y;
-	int	x;
+	double		y;
+	double		x;
+	double	x_mov;
+	double	y_mov;
 
-	y = d->ply.y;
-	x = d->ply.x;
-	if (d->maps.map[((y) - MOV) / CELL][x / CELL] != '1'
-		&& d->maps.map[((y) - MOV) / CELL][(x + 12) / CELL] != '1')
-		d->ply.y -= MOV;
+	x_mov = cos(d->ply.ang) * MOV;
+	y_mov = -sin(d->ply.ang) * MOV;
+	x = d->ply.x + x_mov;
+	y = d->ply.y + y_mov;
+	if (d->maps.map[(int)y / CELL][(int)x / CELL] != '1')
+	{
+		d->ply.x = x;
+		d->ply.y = y;
+	}
 }
 
 void	ft_move_down(t_data *d)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	double	x_mov;
+	double	y_mov;
 
-	y = d->ply.y;
-	x = d->ply.x;
-	if (d->maps.map[((y + 12) + MOV) / CELL][(x + 12) / CELL] != '1'
-		&& d->maps.map[((y + 12) + MOV) / CELL][x / CELL] != '1')
-		d->ply.y += MOV;
+	x_mov = cos(d->ply.ang + M_PI) * MOV;
+	y_mov = -sin(d->ply.ang + M_PI) * MOV;
+	x = d->ply.x + x_mov;
+	y = d->ply.y + y_mov;
+	if (d->maps.map[y / CELL][x / CELL] != '1')
+	{
+		d->ply.x = x;
+		d->ply.y = y;
+	}
 }
 
 void	ft_move_left(t_data *d)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	double	x_mov;
+	double	y_mov;
 
-	y = d->ply.y;
-	x = d->ply.x;
-	if (d->maps.map[(y) / CELL][(x - MOV) / CELL] != '1'
-		&& d->maps.map[(y + 12) / CELL][(x - MOV) / CELL] != '1')
-		d->ply.x -= MOV;
+	x_mov = cos(d->ply.ang + M_PI_2) * MOV;
+	y_mov = -sin(d->ply.ang + M_PI_2) * MOV;
+	x = d->ply.x + x_mov;
+	y = d->ply.y + y_mov;
+	if (d->maps.map[y / CELL][x / CELL] != '1')
+	{
+		d->ply.x = x;
+		d->ply.y = y;
+	}
 }
 
 void	ft_move_right(t_data *d)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	double	x_mov;
+	double	y_mov;
 
-	y = d->ply.y;
-	x = d->ply.x;
-	if (d->maps.map[y / CELL][((x + 12) + MOV) / CELL] != '1'
-		&& d->maps.map[(y + 12) / CELL][((x + 12) + MOV) / CELL] != '1')
-		d->ply.x += MOV;
+	x_mov = +cos(d->ply.ang - M_PI_2) * MOV;
+	y_mov = -sin(d->ply.ang - M_PI_2) * MOV;
+	x = d->ply.x + x_mov;
+	y = d->ply.y + y_mov;
+	if (d->maps.map[y / CELL][x / CELL] != '1')
+	{
+		d->ply.x = x;
+		d->ply.y = y;
+	}
 }
 
 void	ft_key_control(t_data *d)

@@ -2,6 +2,29 @@
 
 #include "cub3d.h"
 
+void	ft_paint_miniplayer(t_data *d)
+{
+	float	player_x;
+	float	player_y;
+	int		i;
+	int		j;
+
+	player_x = d->ply.x * d->maps.map_scale_x;
+	player_y = d->ply.y * d->maps.map_scale_y;
+	i = -1;
+	while (i < 2)
+	{
+		j = -1;
+		while (j < 2)
+		{
+			mlx_put_pixel(d->imgs.mini_src, (int)player_x + j,
+				(int)player_y + i, RED);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_paint_minimap(t_data *d, size_t w, size_t h)
 {
 	size_t	y;

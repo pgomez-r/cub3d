@@ -1,5 +1,4 @@
 
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -10,12 +9,6 @@
 
 # include "libft/inc/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
-# include <math.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <errno.h>
-# include <unistd.h>
-# include <fcntl.h>
 
 /*PRE-DEFINED VALUES FOR THE GAME*/
 # define NAME "CVB3D"
@@ -26,7 +19,7 @@
 # define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
 # define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
-# define FOV (60 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
+# define FOV (90 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
 # define N_RAYS (WIDTH) //Number of rays to cast - has to be proportional to FOV value!
 # define PP ((WIDTH / 2) / tan(FOV / 2))//Projection plane
 # define NORTH (M_PI / 2)
@@ -51,7 +44,6 @@ typedef struct s_player		t_player; //first person view player info and values
 typedef struct s_rays		t_rays; //raycasting variables and values
 
 /*Structs definition*/
-
 typedef struct s_info_map
 {
 	char	*north_texture_path;
@@ -109,6 +101,12 @@ typedef struct s_rays
 	double	ray_y;
 	float	wall_dist;
 	float	wall_height;
+	float	init_x;
+	float	init_y;
+	float	delta_x;
+	float	delta_y;
+	int		dir_x;
+	int		dir_y;
 }	t_rays;
 
 typedef struct s_data
@@ -125,7 +123,6 @@ typedef struct s_data
 /*init.c*/
 void		ft_init(t_data *d);
 void		ft_map_parse(t_data *d, t_info_map *info_map);
-void		ft_map_maker(t_data *d);
 void		ft_place_player(t_data *d);
 t_info_map	ft_init_map(void);
 /*load_images.c*/
@@ -133,6 +130,7 @@ void		ft_load_images(t_data *d);
 void		ft_set_background(mlx_image_t *img);
 void		ft_create_minipmap(t_data *d);
 void		ft_paint_minimap(t_data *d, size_t w, size_t h);
+void		ft_paint_miniplayer(t_data *d);
 /*key_control.c*/
 void		ft_move_right(t_data *d);
 void		ft_move_left(t_data *d);
@@ -147,7 +145,6 @@ float		ft_wall_distance(t_data *d, t_rays *rc);
 int			ft_wall_heigth(float distance, float plane);
 /*main.c*/
 void		ft_game_hook(void *param);
-void		ft_paint_miniplayer(t_data *d);
 // check_args.c
 void		ft_check_args(int argc, char **argv);
 // check_map.c

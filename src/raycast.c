@@ -2,9 +2,52 @@
 
 #include "cub3d.h"
 
-/**
- * TODO: shorten variable name 'map_scale_x' (and '..._y') to fit 80chars
- */
+void	ft_init_ray_step(t_data *d, t_rays *rc)
+{
+	if (cos(rc->curr_ang) > 0)
+	{	
+		rc->init_x = (floor(d->ply.x / CELL) * CELL + CELL - d->ply.x)
+			/ cos(rc->curr_ang);
+		rc->dir_x = 1;
+	}
+	else
+	{
+		rc->init_x = (d->ply.x - floor(d->ply.x / CELL) * CELL)
+			/ fabs(cos(rc->curr_ang));
+		rc->dir_x = -1;
+	}
+	if (sin(rc->curr_ang) > 0)
+	{
+		rc->init_y = (floor(d->ply.y / CELL) * CELL + CELL - d->ply.y)
+				/ sin(rc->curr_ang);
+		rc->dir_y = -1;
+	}
+	else
+	{
+		rc->init_y = (d->ply.y - floor(d->ply.y / CELL) * CELL)
+				/ fabs(sin(rc->curr_ang));
+		rc->dir_y = 1;
+	}
+}
+
+void	ft_init_delta_step(t_rays *rc)
+{
+	rc->delta_x = CELL / fabs(cos(rc->curr_ang));
+	rc->delta_y = CELL / fabs(sin(rc->curr_ang));
+}
+void	ft_push_ray(t_rays *rc)
+{
+	if (rc->init_x < rc->init_y)
+	{
+		rc->init_x += rc->delta_x;
+		rc->ray_x += rc->dir_x;
+	}
+	else
+	{
+		rc->init_y += rc->delta_y;
+		rc->ray_y += rc->dir_y;
+	}
+}
 
 void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 {
@@ -18,12 +61,15 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 	{
 		rc->ray_x = d->ply.x;
 		rc->ray_y = d->ply.y;
+		ft_init_ray_step(d, rc);
+		ft_init_delta_step(rc);
 		while (d->maps.map[(int)rc->ray_y / CELL][(int)rc->ray_x / CELL] != '1')
 		{
 			mlx_put_pixel(d->imgs.mini_src, (int)(rc->ray_x * scale_x),
 				(int)(rc->ray_y * scale_y), PINK);
-			rc->ray_y -= sin(rc->curr_ang);
-			rc->ray_x += cos(rc->curr_ang);
+			ft_push_ray(rc);
+			// rc->ray_y -= sin(rc->curr_ang);
+			// rc->ray_x += cos(rc->curr_ang);
 		}
 		ft_wall_render(d, rc, i);
 		rc->curr_ang += rc->incr_ang;

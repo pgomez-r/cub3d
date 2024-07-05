@@ -2,43 +2,6 @@
 
 #include "cub3d.h"
 
-void	ft_paint_miniplayer(t_data *d)
-{
-	float	player_x;
-	float	player_y;
-	int		i;
-	int		j;
-
-	player_x = d->ply.x * d->maps.map_scale_x;
-	player_y = d->ply.y * d->maps.map_scale_y;
-	i = -1;
-	while (i < 2)
-	{
-		j = -1;
-		while (j < 2)
-		{
-			mlx_put_pixel(d->imgs.mini_src, (int)player_x + j,
-				(int)player_y + i, RED);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	ft_game_hook(void *param)
-{
-	t_data	*d;
-
-	d = (t_data *)param;
-	if (d->exit_code == 0)
-	{
-		ft_key_control(d);
-		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
-		ft_paint_miniplayer(d);
-		ft_raycast(d, &d->rc, d->maps.map_scale_x, d->maps.map_scale_y);
-	}
-}
-
 void	print_map_info(t_info_map *info_map)
 {
 	int	y;
@@ -64,6 +27,21 @@ void	print_map_info(t_info_map *info_map)
 	printf("\n");
 }
 
+void	ft_game_hook(void *param)
+{
+	t_data	*d;
+
+	d = (t_data *)param;
+	if (d->exit_code == 0)
+	{
+		//printf("P_ANGLE = %f\n", d->ply.ang * (180.0 / M_PI));
+		ft_key_control(d);
+		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
+		ft_paint_miniplayer(d);
+		ft_raycast(d, &d->rc, d->maps.map_scale_x, d->maps.map_scale_y);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data		d;
@@ -74,7 +52,6 @@ int	main(int argc, char **argv)
 	info_map = ft_init_map();
 	ft_get_map_info(argv[1], &info_map);
 	ft_map_parse(&d, &info_map);
-	print_map_info(&info_map);
 	if (d.exit_code == 0)
 	{
 		d.game = mlx_init(WIDTH, HEIGTH, "CVB3D", false);
