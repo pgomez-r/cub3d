@@ -38,7 +38,6 @@ void	ft_wall_tex_init(t_data *d, t_rays *rc, int start)
 	d->tx.tex_step = 1.0 * d->tx.tex_ptr->height / d->rc.wall_height;
 	d->tx.tex_pos = (start - d->tx.mid_win + (d->rc.wall_height / 2))
 		* d->tx.tex_step;
-	d->tx.tex_step = 1.0 * d->tx.tex_ptr->height / d->rc.wall_height;
 }
 
 void	ft_wall_paint(t_data *d, t_render *tx, int x, int y)
