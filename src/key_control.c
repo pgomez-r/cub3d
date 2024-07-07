@@ -13,7 +13,7 @@ void	ft_move_up(t_data *d)
 	y_mov = -sin(d->ply.ang) * MOV;
 	x = d->ply.x + x_mov;
 	y = d->ply.y + y_mov;
-	if (d->maps.map[(int)y / CELL][(int)x / CELL] != '1')
+	if (!ft_mov_validation(d, x, y))
 	{
 		d->ply.x = x;
 		d->ply.y = y;
@@ -31,7 +31,7 @@ void	ft_move_down(t_data *d)
 	y_mov = -sin(d->ply.ang + M_PI) * MOV;
 	x = d->ply.x + x_mov;
 	y = d->ply.y + y_mov;
-	if (d->maps.map[y / CELL][x / CELL] != '1')
+	if (!ft_mov_validation(d, x, y))
 	{
 		d->ply.x = x;
 		d->ply.y = y;
@@ -49,7 +49,7 @@ void	ft_move_left(t_data *d)
 	y_mov = -sin(d->ply.ang + M_PI_2) * MOV;
 	x = d->ply.x + x_mov;
 	y = d->ply.y + y_mov;
-	if (d->maps.map[y / CELL][x / CELL] != '1')
+	if (!ft_mov_validation(d, x, y))
 	{
 		d->ply.x = x;
 		d->ply.y = y;
@@ -67,7 +67,7 @@ void	ft_move_right(t_data *d)
 	y_mov = -sin(d->ply.ang - M_PI_2) * MOV;
 	x = d->ply.x + x_mov;
 	y = d->ply.y + y_mov;
-	if (d->maps.map[y / CELL][x / CELL] != '1')
+	if (!ft_mov_validation(d, x, y))
 	{
 		d->ply.x = x;
 		d->ply.y = y;

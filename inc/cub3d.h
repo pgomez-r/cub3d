@@ -80,7 +80,9 @@ typedef struct s_player
 	t_data		*dpt;
 	double		x;
 	double		y;
-	double		ang;	
+	double		ang;
+	int			x_offset;
+	int			y_offset;
 }	t_player;
 
 typedef struct s_render
@@ -157,6 +159,8 @@ void			ft_move_left(t_data *d);
 void			ft_move_down(t_data *d);
 void			ft_move_up(t_data *d);
 void			ft_key_control(t_data *d);
+/*key_control_utils.c*/
+int				ft_mov_validation(t_data *d, int x, int y);
 /*raycast.c*/
 void			ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y);
 void			ft_init_ray_step(t_data *d, t_rays *rc);

@@ -6,7 +6,7 @@
 #    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/07/05 20:18:26 by pgruz11          ###   ########.fr        #
+#    Updated: 2024/07/07 23:26:29 by pgruz11          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ OBJ_PATH = obj/
 SRC      =	main.c \
 			init.c \
 			key_control.c \
+			key_control_utils.c \
 			load_images.c \
 			raycast.c \
 			check_args.c \
