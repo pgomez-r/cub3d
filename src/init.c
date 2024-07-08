@@ -59,8 +59,6 @@ void	ft_init(t_data *d)
 	d->maps.dpt = d;
 	d->imgs.dpt = d;
 	d->ply.dpt = d;
-	d->ply.x_offset = 12;
-	d->ply.y_offset = 12;
 	d->rc.dpt = d;
 	d->tx.dpt = d;
 }

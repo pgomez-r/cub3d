@@ -1,7 +1,7 @@
 
-#include "cub3d.h" // Include the main header file for the project, which likely contains global definitions, structures, and function prototypes.
+#include "cub3d.h"
 
-/* This function below is in working progress, still needs many tests */
+/*Could change this function assuming that there is always one ray per x pixel (WIDTH)*/
 void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
 {
     double	win_x; // Variable to store the starting x-coordinate of the wall slice on the screen.
@@ -21,18 +21,6 @@ void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
     rc->wall_dist = ft_wall_distance(d, rc); // Calculate the distance to the wall hit by this ray.
     rc->wall_height = ft_wall_heigth(rc->wall_dist, PP); // Calculate the height of the wall slice on the screen based on the distance.
     ft_draw_wall(d, rc, win_x, (end_x - win_x) + 1); // Draw the wall slice from win_x to end_x.
-}
-
-float	ft_wall_distance(t_data *d, t_rays *rc)
-{
-    // Calculate and return the distance from the player to the wall hit by the ray using the Pythagorean theorem.
-    return (sqrt(pow(rc->ray_x - d->ply.x, 2) + pow(rc->ray_y - d->ply.y, 2)));
-}
-
-int	ft_wall_heigth(float distance, float plane)
-{
-    // This function is intended to calculate and return the height of the wall slice on the screen.
-    // The actual calculation is not shown, but it likely involves the distance to the wall, the player's view plane, and possibly perspective correction.
 }
 
 // This function is responsible for drawing a vertical slice of a wall on the screen.
@@ -56,7 +44,7 @@ void ft_draw_wall(t_data *d, t_rays *rc, int win_x, int col_width)
     if (end >= HEIGTH)
         end = HEIGTH - 1;
 
-    // Initialize the wall texture for rendering. This might involve setting up texture coordinates.
+    // Initialize the wall texture for rendering. This involves setting up texture coordinates.
     ft_wall_tex_init(d, rc, start);
 
     // Loop through each x-coordinate in the wall slice, from the start to the end of its width.

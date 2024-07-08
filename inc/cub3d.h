@@ -19,6 +19,7 @@
 # define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
 # define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
+# define OFFSET 16 //Player sides offset size in pixels
 # define FOV (90 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
 # define N_RAYS (WIDTH) //Number of rays to cast - has to be proportional to FOV value!
 # define PP ((WIDTH / 2) / tan(FOV / 2))//Projection plane
@@ -81,8 +82,6 @@ typedef struct s_player
 	double		x;
 	double		y;
 	double		ang;
-	int			x_offset;
-	int			y_offset;
 }	t_player;
 
 typedef struct s_render
