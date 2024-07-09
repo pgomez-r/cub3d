@@ -19,7 +19,7 @@
 # define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
 # define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
-# define OFFSET 16 //Player sides offset size in pixels
+# define OFFSET 8 //Player sides offset size in pixels
 # define FOV (90 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
 # define N_RAYS (WIDTH) //Number of rays to cast - has to be proportional to FOV value!
 # define PP ((WIDTH / 2) / tan(FOV / 2))//Projection plane
@@ -167,12 +167,13 @@ void			ft_init_delta_step(t_rays *rc);
 int				ft_push_ray(t_rays *rc);
 /*wall_render.c*/
 void			ft_wall_render(t_data *d, t_rays *rc, int ray_num);
-void			ft_draw_wall(t_data *d, t_rays *rc, int win_x, int col_width);
-float			ft_wall_distance(t_data *d, t_rays *rc);
-int				ft_wall_heigth(float distance, float plane);
-/*wall_render_utils.c*/
+void			ft_draw_wall(t_data *d, t_rays *rc, int ray_num);
 void			ft_wall_tex_init(t_data *d, t_rays *rc, int start);
 void			ft_wall_paint(t_data *d, t_render *tx, int x, int i);
+/*wall_render_utils.c*/
+float			ft_wall_distance(t_data *d, t_rays *rc);
+int				ft_wall_heigth(float distance, float plane);
+void			ft_texture_select(t_data *d);
 unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
 /*main.c*/
 void			ft_game_hook(void *param);
