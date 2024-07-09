@@ -70,8 +70,6 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 			mlx_put_pixel(d->imgs.mini_src, (int)(rc->ray_x * scale_x),
 				(int)(rc->ray_y * scale_y), PINK);
 			rc->wall_dir = ft_push_ray(rc);
-			// rc->ray_y -= sin(rc->curr_ang);
-			// rc->ray_x += cos(rc->curr_ang);
 		}
 		ft_wall_render(d, rc, i);
 		rc->curr_ang += rc->incr_ang;

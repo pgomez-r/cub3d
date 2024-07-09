@@ -57,3 +57,4 @@ int	ft_wall_heigth(float distance, float plane)
 		height = 1.0;
 	return ((int)height);
 }
+

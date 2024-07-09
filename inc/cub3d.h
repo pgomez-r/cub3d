@@ -168,7 +168,7 @@ int				ft_push_ray(t_rays *rc);
 /*wall_render.c*/
 void			ft_wall_render(t_data *d, t_rays *rc, int ray_num);
 void			ft_draw_wall(t_data *d, t_rays *rc, int ray_num);
-void			ft_wall_tex_init(t_data *d, t_rays *rc, int start);
+void			ft_wall_tex_init(t_data *d, t_rays *rc);
 void			ft_wall_paint(t_data *d, t_render *tx, int x, int i);
 /*wall_render_utils.c*/
 float			ft_wall_distance(t_data *d, t_rays *rc);
