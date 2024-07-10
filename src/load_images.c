@@ -43,7 +43,7 @@ int	ft_load_images(t_data *d, t_info_map *info_map)
 	d->exit_code = ft_load_textures(d, info_map);
 	if (d->exit_code == 0)
 	{
-		d->imgs.game_view = mlx_new_image(d->game, WIDTH, HEIGTH);
+		d->imgs.game_view = mlx_new_image(d->game, WIDTH, HEIGHT);
 		ft_set_background(d->imgs.game_view);
 		mlx_image_to_window(d->game, d->imgs.game_view, 0, 0);
 		ft_create_minipmap(d);

@@ -13,9 +13,9 @@
 /*PRE-DEFINED VALUES FOR THE GAME*/
 # define NAME "CVB3D"
 # define WIDTH 800 //Screen width in pixels
-# define HEIGTH 600 //Screen height in pixels
+# define HEIGHT 600 //Screen height in pixels
 # define MINI_W (WIDTH / 4) //Minimap width in pixels
-# define MINI_H (HEIGTH / 4) //Minimap height in pixels
+# define MINI_H (HEIGHT / 4) //Minimap height in pixels
 # define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
 # define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
@@ -88,10 +88,9 @@ typedef struct s_render
 {
 	t_data			*dpt;
 	int				mid_win;
-	int				tex_x;
-	int				tex_y;
-	double			tex_pos;
-	double			tex_step;
+	double			tex_x;
+	double			tex_y;
+	float			tex_step;
 	unsigned int	tex_color;
 	mlx_texture_t	*tex_ptr;
 }	t_render;
@@ -126,6 +125,9 @@ typedef struct s_rays
 	int		dir_x;
 	int		dir_y;
 	int		wall_dir;
+	float	wall_x;
+	float	wall_y;
+	float	wall_hp;
 }	t_rays;
 
 typedef struct s_data
@@ -172,9 +174,10 @@ void			ft_wall_tex_init(t_data *d, t_rays *rc);
 void			ft_wall_paint(t_data *d, t_render *tx, int x, int i);
 /*wall_render_utils.c*/
 float			ft_wall_distance(t_data *d, t_rays *rc);
-int				ft_wall_heigth(float distance, float plane);
+int				ft_wall_height(float distance, float plane);
 void			ft_texture_select(t_data *d);
 unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
+void			ft_wall_hitpoint(t_data *d, t_rays *rc);
 /*main.c*/
 void			ft_game_hook(void *param);
 // check_args.c

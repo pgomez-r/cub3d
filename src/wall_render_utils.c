@@ -46,7 +46,7 @@ float	ft_wall_distance(t_data *d, t_rays *rc)
 		+ pow(rc->ray_y - d->ply.y, 2)));
 }
 
-int	ft_wall_heigth(float distance, float plane)
+int	ft_wall_height(float distance, float plane)
 {
 	float	wall_gh;
 	float	height;
@@ -58,3 +58,12 @@ int	ft_wall_heigth(float distance, float plane)
 	return ((int)height);
 }
 
+void	ft_wall_hitpoint(t_data *d, t_rays *rc)
+{
+	rc->wall_x = d->ply.x + (rc->dir_x * rc->wall_dist);
+	rc->wall_y = d->ply.y + (rc->dir_y * rc->wall_dist);
+	if (rc->wall_dir == 1)
+		rc->wall_hp = rc->wall_y - floor(rc->wall_y);
+	else
+		rc->wall_hp = rc->wall_x - floor(rc->wall_x);
+}

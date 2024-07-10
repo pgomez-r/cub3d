@@ -14,7 +14,7 @@ void	print_map_info(t_info_map *info_map)
 	printf("Floor: %d, %d, %d\n", info_map->floor[0], info_map->floor[1], info_map->floor[2]);
 	printf("Ceiling: %d, %d, %d\n", info_map->ceiling[0], info_map->ceiling[1], info_map->ceiling[2]);
 	printf("Map_width: %d\n", info_map->map_width);
-	printf("Map_heigth: %d\n", info_map->map_height);
+	printf("Map_HEIGHT: %d\n", info_map->map_height);
 	printf("Map_status: %d\n", info_map->map_status);
 	printf("Player_view: %c\n", info_map->player_view);
 	printf("Map:\n");
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	ft_map_parse(&d, &info_map);
 	if (d.exit_code == 0)
 	{
-		d.game = mlx_init(WIDTH, HEIGTH, NAME, false);
+		d.game = mlx_init(WIDTH, HEIGHT, NAME, false);
 		d.exit_code = ft_load_images(&d, &info_map);
 		if (d.exit_code == 0)
 		{
