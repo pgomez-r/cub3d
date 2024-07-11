@@ -41,6 +41,9 @@ void	ft_wall_tex_init(t_data *d, t_rays *rc)
 		d->tx.tex_x += d->tx.tex_ptr->width;
 	else if (d->tx.tex_x >= d->tx.tex_ptr->width)
 		d->tx.tex_x -= d->tx.tex_ptr->width;
+	if ((rc->wall_dir == 0 && rc->ray_x > 0)
+		|| (rc->wall_dir == 1 && rc->ray_y < 0))
+		d->tx.tex_x = d->tx.tex_ptr->width - d->tx.tex_x - 1;
 	d->tx.tex_y = 0;
 	if (rc->wall_height > HEIGHT)
 		d->tx.tex_y += (rc->wall_height - (float)HEIGHT) / 2 * d->tx.tex_step;

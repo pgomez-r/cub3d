@@ -14,19 +14,20 @@
 # define NAME "CVB3D"
 # define WIDTH 800 //Screen width in pixels
 # define HEIGHT 600 //Screen height in pixels
+# define ASPECT_RATIO ((float)WIDTH / (float)HEIGHT) //Aspect ratio of the screen
 # define MINI_W (WIDTH / 4) //Minimap width in pixels
 # define MINI_H (HEIGHT / 4) //Minimap height in pixels
 # define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
 # define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
 # define MOV 4 //Number of pixels to move per step - will affect game speed
 # define OFFSET 8 //Player sides offset size in pixels
-# define FOV (90 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
+# define FOV (60 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
 # define N_RAYS (WIDTH) //Number of rays to cast - has to be proportional to FOV value!
 # define PP ((WIDTH / 2) / tan(FOV / 2))//Projection plane
 # define NORTH (M_PI / 2)
 # define EAST (2 * M_PI)
-# define SOUTH M_PI
-# define WEST ((3 * M_PI) / 2)
+# define SOUTH ((3 * M_PI) / 2)
+# define WEST M_PI
 
 /*Colors*/
 # define BLACK 0x000000FF
@@ -162,6 +163,7 @@ void			ft_move_up(t_data *d);
 void			ft_key_control(t_data *d);
 /*key_control_utils.c*/
 int				ft_mov_validation(t_data *d, int x, int y);
+float			ft_normalize_angle(float angle);
 /*raycast.c*/
 void			ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y);
 void			ft_init_ray_step(t_data *d, t_rays *rc);

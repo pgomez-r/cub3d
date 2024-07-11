@@ -59,8 +59,9 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 {
 	int		i;
 
-	rc->incr_ang = FOV / (N_RAYS - 1);
+	rc->incr_ang = FOV / (WIDTH - 1);
 	rc->curr_ang = d->ply.ang - (FOV / 2);
+	rc->curr_ang = ft_normalize_angle(rc->curr_ang);
 	ft_set_background(d->imgs.game_view);
 	i = N_RAYS;
 	while (--i >= 0)
@@ -77,5 +78,6 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 		}
 		ft_wall_render(d, rc, i);
 		rc->curr_ang += rc->incr_ang;
+		rc->curr_ang = ft_normalize_angle(rc->curr_ang);
 	}
 }
