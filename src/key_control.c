@@ -4,8 +4,8 @@
 
 void	ft_move_up(t_data *d)
 {
-	double		y;
-	double		x;
+	double	y;
+	double	x;
 	double	x_mov;
 	double	y_mov;
 
@@ -22,8 +22,8 @@ void	ft_move_up(t_data *d)
 
 void	ft_move_down(t_data *d)
 {
-	int		y;
-	int		x;
+	double	y;
+	double	x;
 	double	x_mov;
 	double	y_mov;
 
@@ -40,8 +40,8 @@ void	ft_move_down(t_data *d)
 
 void	ft_move_left(t_data *d)
 {
-	int		y;
-	int		x;
+	double	y;
+	double	x;
 	double	x_mov;
 	double	y_mov;
 
@@ -58,8 +58,8 @@ void	ft_move_left(t_data *d)
 
 void	ft_move_right(t_data *d)
 {
-	int		y;
-	int		x;
+	double	y;
+	double	x;
 	double	x_mov;
 	double	y_mov;
 

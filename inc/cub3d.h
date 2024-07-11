@@ -48,18 +48,20 @@ typedef struct s_render		t_render; //variables used in wall texture rendering
 /*Structs definition*/
 typedef struct s_info_map
 {
-	char	*north_texture_path;
-	char	*south_texture_path;
-	char	*east_texture_path;
-	char	*west_texture_path;
-	int		floor[3];
-	int		ceiling[3];
-	int		map_width;
-	int		map_height;
-	int		map_status;
-	int		player;
-	char	player_view;
-	char	**map;
+	char			*north_texture_path;
+	char			*south_texture_path;
+	char			*east_texture_path;
+	char			*west_texture_path;
+	int				floor[3];
+	int				ceiling[3];
+	unsigned int	floor_hex;
+	unsigned int	ceiling_hex;
+	int				map_width;
+	int				map_height;
+	int				map_status;
+	int				player;
+	char			player_view;
+	char			**map;
 }	t_info_map;
 
 typedef struct s_map
@@ -98,8 +100,8 @@ typedef struct s_render
 typedef struct s_visual
 {
 	t_data			*dpt;
-	int				f_color;
-	int				c_color;
+	unsigned int	f_color;
+	unsigned int	c_color;
 	mlx_image_t		*game_view;
 	mlx_image_t		*mini_src;
 	mlx_image_t		*mini_view;
@@ -149,7 +151,7 @@ void			ft_place_player(t_data *d);
 t_info_map		ft_init_map(void);
 /*load_images.c*/
 int				ft_load_images(t_data *d, t_info_map *info_map);
-void			ft_set_background(mlx_image_t *img);
+void			ft_set_background(t_data *d);
 /*minimap.c*/
 void			ft_create_minipmap(t_data *d);
 void			ft_paint_minimap(t_data *d, size_t w, size_t h);
@@ -192,6 +194,7 @@ void			ft_check_closed_map(t_info_map *info_map);
 void			ft_get_texture(char **texture, t_info_map *info_map);
 void			ft_get_color(char **texture, t_info_map *info_map);
 void			ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n);
+void			ft_rgb_to_hex(t_info_map *info_map);
 //error.c
 void			ft_invalid_map(int mode);
 // free.c
@@ -202,5 +205,6 @@ void			ft_get_width(char *line, t_info_map *info_map);
 void			ft_get_map_size(int fd, t_info_map *info_map);
 // map.c
 void			ft_get_map_info(char *file, t_info_map *info_map);
+void			ft_check_valid_color(t_info_map *info_map);
 
 #endif

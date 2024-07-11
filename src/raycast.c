@@ -19,13 +19,13 @@ void	ft_init_ray_step(t_data *d, t_rays *rc)
 	if (sin(rc->curr_ang) > 0)
 	{
 		rc->init_y = (floor(d->ply.y / CELL) * CELL + CELL - d->ply.y)
-				/ sin(rc->curr_ang);
+			/ sin(rc->curr_ang);
 		rc->dir_y = -1;
 	}
 	else
 	{
 		rc->init_y = (d->ply.y - floor(d->ply.y / CELL) * CELL)
-				/ fabs(sin(rc->curr_ang));
+			/ fabs(sin(rc->curr_ang));
 		rc->dir_y = 1;
 	}
 }
@@ -42,7 +42,6 @@ int	ft_push_ray(t_rays *rc)
 {
 	if (rc->init_x < rc->init_y)
 	{
-		
 		rc->init_x += rc->delta_x;
 		rc->ray_x += (float)rc->dir_x;
 		return (0);
@@ -61,7 +60,7 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 
 	rc->incr_ang = FOV / (N_RAYS - 1);
 	rc->curr_ang = d->ply.ang - (FOV / 2);
-	ft_set_background(d->imgs.game_view);
+	ft_set_background(d);
 	i = N_RAYS;
 	while (--i >= 0)
 	{

@@ -3,8 +3,8 @@ SO ./textures/Black.png
 WE ./textures/Yellow.png
 EA ./textures/Blue.png
 
-F 220,100,0
-C 225,30,0
+F 220,150,0
+C 5,130,240
 
 1111111111111111111111111
 1000000000110000000000001

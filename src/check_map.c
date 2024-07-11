@@ -101,4 +101,5 @@ void	ft_check_closed_map(t_info_map *info_map)
 			ft_check_map_limits(info_map, y);
 		y++;
 	}
+	ft_rgb_to_hex(info_map);
 }

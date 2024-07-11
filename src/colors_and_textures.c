@@ -75,3 +75,12 @@ void	ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n)
 	}
 	ft_free_split(texture);
 }
+
+void	ft_rgb_to_hex(t_info_map *info_map)
+{
+	info_map->floor_hex = (info_map->floor[0] << 16) | (info_map->floor[1] << 8)
+		| info_map->floor[2];
+	info_map->ceiling_hex = (info_map->ceiling[0] << 16)
+		| (info_map->ceiling[1] << 8) | info_map->ceiling[2];
+	return ;
+}

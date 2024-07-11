@@ -2,6 +2,24 @@
 
 #include "cub3d.h"
 
+void	ft_check_valid_color(t_info_map *info_map)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		if (info_map->floor[i] < 0 || info_map->floor[i] > 255
+			|| info_map->ceiling[i] < 0 || info_map->ceiling[i] > 255)
+		{
+			write (2, "Error: Invalid color\n", 21);
+			exit (1);
+			return ;
+		}
+		i++;
+	}
+}
+
 static void	ft_get_line_map(char *line, t_info_map *info_map, int y)
 {
 	int	x;

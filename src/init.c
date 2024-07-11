@@ -41,6 +41,7 @@ void	ft_place_player(t_data *d)
 
 void	ft_map_parse(t_data *d, t_info_map *info_map)
 {
+	ft_check_valid_color(info_map);
 	d->maps.map = info_map->map;
 	d->maps.map_height = info_map->map_height;
 	d->maps.map_width = info_map->map_width;
@@ -48,8 +49,8 @@ void	ft_map_parse(t_data *d, t_info_map *info_map)
 	d->maps.pix_width = d->maps.map_width * CELL;
 	d->maps.minimap_w = d->maps.map_width * MINICELL;
 	d->maps.minimap_h = d->maps.map_height * MINICELL;
-	d->imgs.c_color = BLUE; //Cambiar para que acepte valores RGB
-	d->imgs.f_color = GREEN; //Cambiar para que acepte valores RGB
+	d->imgs.c_color = info_map->ceiling_hex;
+	d->imgs.f_color = info_map->floor_hex;
 	ft_place_player(d);
 }
 
@@ -79,6 +80,8 @@ t_info_map	ft_init_map(void)
 		info_map.ceiling[i] = -1;
 		i++;
 	}
+	info_map.ceiling_hex = 0;
+	info_map.floor_hex = 0;
 	info_map.map_width = 0;
 	info_map.map_height = 0;
 	info_map.map = NULL;

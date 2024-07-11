@@ -19,21 +19,21 @@ int	ft_load_textures(t_data *d, t_info_map *t)
 	return (0);
 }
 
-void	ft_set_background(mlx_image_t *img)
+void	ft_set_background(t_data *d)
 {
-	int y;
+	int	y;
 	int	x;
 
 	y = -1;
-	while ((unsigned int)++y < img->height)
+	while ((unsigned int)++y < d->imgs.game_view->height)
 	{
 		x = -1;
-		while ((unsigned int)++x < img->width)
+		while ((unsigned int)++x < d->imgs.game_view->width)
 		{
-			if ((unsigned int)y < (img->height / 2))
-				mlx_put_pixel(img, x, y, BLUE);
+			if ((unsigned int)y < (d->imgs.game_view->height / 2))
+				mlx_put_pixel(d->imgs.game_view, x, y, d->imgs.c_color);
 			else
-				mlx_put_pixel(img, x, y, GREEN);
+				mlx_put_pixel(d->imgs.game_view, x, y, d->imgs.f_color);
 		}
 	}
 }
@@ -44,7 +44,7 @@ int	ft_load_images(t_data *d, t_info_map *info_map)
 	if (d->exit_code == 0)
 	{
 		d->imgs.game_view = mlx_new_image(d->game, WIDTH, HEIGHT);
-		ft_set_background(d->imgs.game_view);
+		ft_set_background(d);
 		mlx_image_to_window(d->game, d->imgs.game_view, 0, 0);
 		ft_create_minipmap(d);
 	}
