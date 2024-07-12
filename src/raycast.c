@@ -77,6 +77,12 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 			rc->wall_dir = ft_push_ray(rc);
 		}
 		ft_wall_render(d, rc, i);
+		if (i == 0 || i == N_RAYS / 2 - 1 || i == N_RAYS - 1)
+		{
+			printf("RAY %d\n - PLAYER_ANGLE = %f", i, d->ply.ang);
+			printf("player_x = %f, player_y = %f, wall_distance = %f\n", d->ply.x, d->ply.y, rc->wall_dist);
+			printf("wall_x = %f, wall_y = %f, wall_hp = %f\n", rc->wall_x, rc->wall_y, rc->wall_hp);
+		}
 		rc->curr_ang += rc->incr_ang;
 		rc->curr_ang = ft_normalize_angle(rc->curr_ang);
 	}

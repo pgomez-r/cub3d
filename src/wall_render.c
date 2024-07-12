@@ -6,7 +6,8 @@ void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
 {
 	rc->wall_dist = ft_wall_distance(d, rc);
 	rc->wall_height = ft_wall_height(rc->wall_dist, PP);
-	ft_wall_hitpoint(d, rc);
+	//printf("RAY %d > ", ray_num);
+	ft_wall_hitpoint(d, rc, ray_num);
 	ft_draw_wall(d, rc, ray_num);
 }
 

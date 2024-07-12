@@ -66,13 +66,16 @@ int	ft_wall_height(float distance, float plane)
 	return ((int)height);
 }
 
-void	ft_wall_hitpoint(t_data *d, t_rays *rc)
+void	ft_wall_hitpoint(t_data *d, t_rays *rc, int ray_num)
 {
-	rc->wall_x = (d->ply.x / CELL) + (rc->dir_x * rc->wall_dist);
-	rc->wall_y = (d->ply.y / CELL) + (rc->dir_y * rc->wall_dist);
-	if (rc->wall_dir == 1)
+	float	ply_line;
+	(void)ray_num;
+	rc->wall_x = (d->ply.x / CELL) + (rc->dir_x * (rc->wall_dist / CELL));
+	rc->wall_y = (d->ply.y / CELL) + (rc->dir_y * (rc->wall_dist / CELL));
+	if (rc->wall_dir == 0)
 		rc->wall_hp = rc->wall_x;
 	else
 		rc->wall_hp = rc->wall_y;
 	rc->wall_hp -= floor(rc->wall_hp);
+	//printf("wall_x = %f, wall_y = %f, wall_hp = %f\n", rc->wall_x, rc->wall_y, rc->wall_hp);
 }
