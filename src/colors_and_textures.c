@@ -14,24 +14,25 @@ void	ft_get_texture(char **texture, t_info_map *info_map)
 		info_map->west_texture_path = ft_strdup(texture[1]);
 }
 
-void	ft_get_color(char **texture, t_info_map *info_map)
+void	ft_get_color(char **rgb_color, t_info_map *info_map)
 {
 	char	**color;
 
-	color = ft_split(texture[1], ',');
+	ft_check_rgb_color(rgb_color[1]);
+	color = ft_split(rgb_color[1], ',');
 	if (!color || color[3])
 	{
 		write (2, "Error: Invalid map\n", 19);
 		exit (1);
 		return ;
 	}
-	if (!ft_strncmp(texture[0], "F", 2))
+	if (!ft_strncmp(rgb_color[0], "F", 2))
 	{
 		info_map->floor[0] = ft_atoi(color[0]);
 		info_map->floor[1] = ft_atoi(color[1]);
 		info_map->floor[2] = ft_atoi(color[2]);
 	}
-	else if (!strncmp(texture[0], "C", 2))
+	else if (!strncmp(rgb_color[0], "C", 2))
 	{
 		info_map->ceiling[0] = ft_atoi(color[0]);
 		info_map->ceiling[1] = ft_atoi(color[1]);

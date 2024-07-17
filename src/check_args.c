@@ -34,3 +34,18 @@ void	ft_check_args(int argc, char **argv)
 	}
 	return ;
 }
+
+void	ft_check_rgb_color(char *color)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(color);
+	if (color[0] == ',' || color[len - 1] == ',')
+		ft_invalid_map(1);
+	while (color[i] == ',' || ft_isdigit(color[i]))
+		i++;
+	if (i < len)
+		ft_invalid_map(1);
+}

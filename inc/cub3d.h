@@ -132,7 +132,7 @@ typedef struct s_rays
 }	t_rays;
 
 typedef struct s_data
-{ 
+{
 	t_map		maps;
 	t_visual	imgs;
 	t_player	ply;
@@ -184,6 +184,7 @@ void			ft_wall_hitpoint(t_rays *rc);
 void			ft_game_hook(void *param);
 // check_args.c
 void			ft_check_args(int argc, char **argv);
+void			ft_check_rgb_color(char *color);
 // check_map.c
 int				ft_check_line_map(char *line, int mode);
 void			ft_check_all_ones(char *line);

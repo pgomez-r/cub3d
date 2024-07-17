@@ -18,7 +18,7 @@ void	ft_draw_wall(t_data *d, t_rays *rc, int ray_num)
 
 	d->tx.mid_win = HEIGHT / 2;
 	start = d->tx.mid_win - (int)(rc->wall_height / 2);
-	if (start < 0) 
+	if (start < 0)
 		start = 0;
 	end = start + (int)rc->wall_height;
 	if (end >= HEIGHT)

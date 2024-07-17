@@ -2,32 +2,6 @@
 
 #include "cub3d.h"
 
-void	print_map_info(t_info_map *info_map)
-{
-	int	y;
-
-	y = 0;
-	printf("North texture: %s\n", info_map->north_texture_path);
-	printf("South texture: %s\n", info_map->south_texture_path);
-	printf("East texture: %s\n", info_map->east_texture_path);
-	printf("West texture: %s\n", info_map->west_texture_path);
-	printf("Floor: %d, %d, %d\n", info_map->floor[0],
-		info_map->floor[1], info_map->floor[2]);
-	printf("Ceiling: %d, %d, %d\n", info_map->ceiling[0],
-		info_map->ceiling[1], info_map->ceiling[2]);
-	printf("Map_width: %d\n", info_map->map_width);
-	printf("Map_HEIGHT: %d\n", info_map->map_height);
-	printf("Map_status: %d\n", info_map->map_status);
-	printf("Player_view: %c\n", info_map->player_view);
-	printf("Map:\n");
-	while (info_map->map[y])
-	{
-		printf("%s\n", info_map->map[y]);
-		y++;
-	}
-	printf("\n");
-}
-
 void	ft_game_hook(void *param)
 {
 	t_data	*d;
