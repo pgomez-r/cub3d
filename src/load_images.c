@@ -21,7 +21,7 @@ int	ft_load_textures(t_data *d, t_info_map *t)
 
 void	ft_set_background(mlx_image_t *img)
 {
-	int y;
+	int	y;
 	int	x;
 
 	y = -1;
@@ -50,4 +50,3 @@ int	ft_load_images(t_data *d, t_info_map *info_map)
 	}
 	return (d->exit_code);
 }
-

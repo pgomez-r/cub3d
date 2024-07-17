@@ -48,8 +48,8 @@ void	ft_map_parse(t_data *d, t_info_map *info_map)
 	d->maps.pix_width = d->maps.map_width * CELL;
 	d->maps.minimap_w = d->maps.map_width * MINICELL;
 	d->maps.minimap_h = d->maps.map_height * MINICELL;
-	d->imgs.c_color = BLUE; //Cambiar para que acepte valores RGB
-	d->imgs.f_color = GREEN; //Cambiar para que acepte valores RGB
+	d->imgs.c_color = BLUE;
+	d->imgs.f_color = GREEN;
 	ft_place_player(d);
 }
 

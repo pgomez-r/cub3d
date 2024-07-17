@@ -15,7 +15,7 @@ int	ft_mov_validation(t_data *d, int mov_x, int mov_y)
 	return (0);
 }
 
-float			ft_normalize_angle(float angle)
+float	ft_normalize_angle(float angle)
 {
 	if (angle >= 2 * M_PI)
 		angle -= 2 * M_PI;

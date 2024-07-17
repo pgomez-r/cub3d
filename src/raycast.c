@@ -5,7 +5,7 @@
 void	ft_init_ray_step(t_data *d, t_rays *rc)
 {
 	if (cos(rc->curr_ang) > 0)
-	{	
+	{
 		rc->init_x = (floor(d->ply.x / CELL) * CELL + CELL - d->ply.x)
 			/ cos(rc->curr_ang);
 		rc->dir_x = 1;
@@ -19,13 +19,13 @@ void	ft_init_ray_step(t_data *d, t_rays *rc)
 	if (sin(rc->curr_ang) > 0)
 	{
 		rc->init_y = (floor(d->ply.y / CELL) * CELL + CELL - d->ply.y)
-				/ sin(rc->curr_ang);
+			/ sin(rc->curr_ang);
 		rc->dir_y = -1;
 	}
 	else
 	{
 		rc->init_y = (d->ply.y - floor(d->ply.y / CELL) * CELL)
-				/ fabs(sin(rc->curr_ang));
+			/ fabs(sin(rc->curr_ang));
 		rc->dir_y = 1;
 	}
 }
@@ -42,7 +42,6 @@ int	ft_push_ray(t_rays *rc)
 {
 	if (rc->init_x < rc->init_y)
 	{
-		
 		rc->init_x += rc->delta_x;
 		rc->ray_x += (float)rc->dir_x;
 		return (0);
@@ -77,12 +76,6 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 			rc->wall_dir = ft_push_ray(rc);
 		}
 		ft_wall_render(d, rc, i);
-		if (i == 0 || i == N_RAYS / 2 - 1 || i == N_RAYS - 1)
-		{
-			printf("RAY %d\n - PLAYER_ANGLE = %f", i, d->ply.ang);
-			printf("player_x = %f, player_y = %f, wall_distance = %f\n", d->ply.x, d->ply.y, rc->wall_dist);
-			printf("wall_x = %f, wall_y = %f, wall_hp = %f\n", rc->wall_x, rc->wall_y, rc->wall_hp);
-		}
 		rc->curr_ang += rc->incr_ang;
 		rc->curr_ang = ft_normalize_angle(rc->curr_ang);
 	}

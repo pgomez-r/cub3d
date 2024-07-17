@@ -126,13 +126,11 @@ typedef struct s_rays
 	int		dir_x;
 	int		dir_y;
 	int		wall_dir;
-	float	wall_x;
-	float	wall_y;
 	double	wall_hp;
 }	t_rays;
 
 typedef struct s_data
-{
+{ 
 	t_map		maps;
 	t_visual	imgs;
 	t_player	ply;
@@ -179,7 +177,7 @@ float			ft_wall_distance(t_data *d, t_rays *rc);
 int				ft_wall_height(float distance, float plane);
 void			ft_texture_select(t_data *d);
 unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
-void			ft_wall_hitpoint(t_data *d, t_rays *rc, int ray_num);
+void			ft_wall_hitpoint(t_rays *rc);
 /*main.c*/
 void			ft_game_hook(void *param);
 // check_args.c

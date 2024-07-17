@@ -6,15 +6,11 @@ void	ft_move_up(t_data *d)
 {
 	double		y;
 	double		x;
-	double	x_mov;
-	double	y_mov;
+	double		x_mov;
+	double		y_mov;
 
 	x_mov = cos(d->ply.ang) * MOV;
 	y_mov = -sin(d->ply.ang) * MOV;
-	// if (fabs(x_mov) < EPSILON)
-	// 	x_mov = 0;
-	// if (fabs(y_mov) < EPSILON)
-	// 	y_mov = 0;
 	x = d->ply.x + x_mov;
 	y = d->ply.y + y_mov;
 	if (!ft_mov_validation(d, x, y))
@@ -28,8 +24,8 @@ void	ft_move_down(t_data *d)
 {
 	double		y;
 	double		x;
-	double	x_mov;
-	double	y_mov;
+	double		x_mov;
+	double		y_mov;
 
 	x_mov = cos(d->ply.ang + M_PI) * MOV;
 	y_mov = -sin(d->ply.ang + M_PI) * MOV;
@@ -46,8 +42,8 @@ void	ft_move_left(t_data *d)
 {
 	double		y;
 	double		x;
-	double	x_mov;
-	double	y_mov;
+	double		x_mov;
+	double		y_mov;
 
 	x_mov = cos(d->ply.ang + M_PI_2) * MOV;
 	y_mov = -sin(d->ply.ang + M_PI_2) * MOV;
@@ -64,8 +60,8 @@ void	ft_move_right(t_data *d)
 {
 	double		y;
 	double		x;
-	double	x_mov;
-	double	y_mov;
+	double		x_mov;
+	double		y_mov;
 
 	x_mov = +cos(d->ply.ang - M_PI_2) * MOV;
 	y_mov = -sin(d->ply.ang - M_PI_2) * MOV;
