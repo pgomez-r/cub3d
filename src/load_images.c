@@ -50,4 +50,3 @@ int	ft_load_images(t_data *d, t_info_map *info_map)
 	}
 	return (d->exit_code);
 }
-

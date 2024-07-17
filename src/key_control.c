@@ -81,9 +81,11 @@ void	ft_key_control(t_data *d)
 		d->exit_code = -1;
 		mlx_close_window(d->game);
 	}
-	if (mlx_is_key_down(d->game, MLX_KEY_W))
+	if (mlx_is_key_down(d->game, MLX_KEY_W)
+		|| mlx_is_key_down(d->game, MLX_KEY_UP))
 		ft_move_up(d);
-	if (mlx_is_key_down(d->game, MLX_KEY_S))
+	if (mlx_is_key_down(d->game, MLX_KEY_S)
+		|| mlx_is_key_down(d->game, MLX_KEY_DOWN))
 		ft_move_down(d);
 	if (mlx_is_key_down(d->game, MLX_KEY_A))
 		ft_move_left(d);
@@ -92,13 +94,11 @@ void	ft_key_control(t_data *d)
 	if (mlx_is_key_down(d->game, MLX_KEY_LEFT))
 	{
 		d->ply.ang += (M_PI / 180);
-		if (d->ply.ang >= 2 * M_PI)
-			d->ply.ang -= 2 * M_PI;
+		d->ply.ang = ft_normalize_angle(d->ply.ang);
 	}
 	if (mlx_is_key_down(d->game, MLX_KEY_RIGHT))
 	{
 		d->ply.ang -= (M_PI / 180);
-		if (d->ply.ang < 0)
-			d->ply.ang += 2 * M_PI;
+		d->ply.ang = ft_normalize_angle(d->ply.ang);
 	}
 }

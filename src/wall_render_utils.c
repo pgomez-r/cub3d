@@ -42,8 +42,16 @@ void	ft_texture_select(t_data *d)
 
 float	ft_wall_distance(t_data *d, t_rays *rc)
 {
-	return (sqrt(pow(rc->ray_x - d->ply.x, 2)
-		+ pow(rc->ray_y - d->ply.y, 2)));
+	float	raw_dist;
+	float	ang_diff;
+	float	fix_dist;
+
+	raw_dist = sqrt(pow(rc->ray_x - d->ply.x, 2)
+			+ pow(rc->ray_y - d->ply.y, 2));
+	ang_diff = d->ply.ang - rc->curr_ang;
+	ang_diff = ft_normalize_angle(ang_diff);
+	fix_dist = raw_dist * cos(ang_diff);
+	return (fix_dist);
 }
 
 int	ft_wall_height(float distance, float plane)
@@ -58,12 +66,11 @@ int	ft_wall_height(float distance, float plane)
 	return ((int)height);
 }
 
-void	ft_wall_hitpoint(t_data *d, t_rays *rc)
+void	ft_wall_hitpoint(t_rays *rc)
 {
-	rc->wall_x = d->ply.x + (rc->dir_x * rc->wall_dist);
-	rc->wall_y = d->ply.y + (rc->dir_y * rc->wall_dist);
 	if (rc->wall_dir == 1)
-		rc->wall_hp = rc->wall_y - floor(rc->wall_y);
+		rc->wall_hp = rc->ray_x / CELL;
 	else
-		rc->wall_hp = rc->wall_x - floor(rc->wall_x);
+		rc->wall_hp = rc->ray_y / CELL;
+	rc->wall_hp -= floor(rc->wall_hp);
 }

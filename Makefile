@@ -6,7 +6,7 @@
 #    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/07/07 23:26:29 by pgruz11          ###   ########.fr        #
+#    Updated: 2024/07/17 05:19:48 by pgruz11          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CMAKE_CMD = cmake -B ./inc/MLX42/build ./inc/MLX42
 GLFW_LINK = -Iinclude -ldl -lglfw -pthread -lm
 endif
 
-NAME     = cub3d
+NAME     = cub3D
 
 CC       = gcc
 CFLAGS   = -Wall -Wextra -Werror -I./inc

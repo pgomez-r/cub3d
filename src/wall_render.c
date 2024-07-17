@@ -6,11 +6,11 @@ void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
 {
 	rc->wall_dist = ft_wall_distance(d, rc);
 	rc->wall_height = ft_wall_height(rc->wall_dist, PP);
-	ft_wall_hitpoint(d, rc);
+	ft_wall_hitpoint(rc);
 	ft_draw_wall(d, rc, ray_num);
 }
 
-void ft_draw_wall(t_data *d, t_rays *rc, int ray_num)
+void	ft_draw_wall(t_data *d, t_rays *rc, int ray_num)
 {
 	int	start;
 	int	end;
@@ -41,6 +41,9 @@ void	ft_wall_tex_init(t_data *d, t_rays *rc)
 		d->tx.tex_x += d->tx.tex_ptr->width;
 	else if (d->tx.tex_x >= d->tx.tex_ptr->width)
 		d->tx.tex_x -= d->tx.tex_ptr->width;
+	if ((rc->wall_dir == 0 && rc->ray_x > 0)
+		|| (rc->wall_dir == 1 && rc->ray_y < 0))
+		d->tx.tex_x = d->tx.tex_ptr->width - d->tx.tex_x - 1;
 	d->tx.tex_y = 0;
 	if (rc->wall_height > HEIGHT)
 		d->tx.tex_y += (rc->wall_height - (float)HEIGHT) / 2 * d->tx.tex_step;
@@ -48,7 +51,8 @@ void	ft_wall_tex_init(t_data *d, t_rays *rc)
 
 void	ft_wall_paint(t_data *d, t_render *tx, int x, int y)
 {
-	tx->tex_color = ft_get_pix_color(tx->tex_ptr, (int)tx->tex_x, (int)tx->tex_y);
+	tx->tex_color = ft_get_pix_color(tx->tex_ptr,
+			(int)tx->tex_x, (int)tx->tex_y);
 	mlx_put_pixel(d->imgs.game_view, x, y, tx->tex_color);
 	tx->tex_y += tx->tex_step;
 }
