@@ -61,7 +61,7 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 	rc->incr_ang = FOV / (WIDTH - 1);
 	rc->curr_ang = d->ply.ang - (FOV / 2);
 	rc->curr_ang = ft_normalize_angle(rc->curr_ang);
-	ft_set_background(d->imgs.game_view);
+	ft_set_background(d);
 	i = N_RAYS;
 	while (--i >= 0)
 	{
