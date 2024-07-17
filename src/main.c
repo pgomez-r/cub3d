@@ -13,6 +13,7 @@ void	ft_game_hook(void *param)
 		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
 		ft_paint_miniplayer(d);
 		ft_raycast(d, &d->rc, d->maps.map_scale_x, d->maps.map_scale_y);
+		ft_paint_miniview(d);
 	}
 }
 

@@ -2,6 +2,26 @@
 
 #include "cub3d.h"
 
+unsigned int	ft_img_color(mlx_image_t *tex, int x, int y)
+{
+	unsigned int	pos;
+	int				r;
+	int				g;
+	int				b;
+	int				a;
+
+	pos = 4 * x + (4 * y * tex->width);
+	if (pos <= tex->height * tex->width * 4)
+	{
+		r = tex->pixels[pos];
+		g = tex->pixels[pos + 1];
+		b = tex->pixels[pos + 2];
+		a = tex->pixels[pos + 3];
+		return (r << 24 | g << 16 | b << 8 | a);
+	}
+	return (0);
+}
+
 int	ft_load_textures(t_data *d, t_info_map *t)
 {
 	d->imgs.no_texture = mlx_load_png(t->north_texture_path);
