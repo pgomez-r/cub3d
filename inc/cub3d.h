@@ -12,8 +12,8 @@
 
 /*PRE-DEFINED VALUES FOR THE GAME*/
 # define NAME "CVB3D"
-# define WIDTH 800 //Screen width in pixels
-# define HEIGHT 600 //Screen height in pixels
+# define WIDTH 1000 //Screen width in pixels
+# define HEIGHT 800 //Screen height in pixels
 # define ASPECT_RATIO ((float)WIDTH / (float)HEIGHT) //Aspect ratio of the screen
 # define MINI_W (WIDTH / 4) //Minimap width in pixels
 # define MINI_H (HEIGHT / 4) //Minimap height in pixels
@@ -37,6 +37,7 @@
 # define RED 0xFF0000FF
 # define GREEN 0x007F007F
 # define TRANSP 0xFF000000
+# define GREY 0xA9A9A9FF
 
 /*Structs declaration*/
 typedef struct s_data		t_data; //general program data
@@ -148,11 +149,14 @@ void			ft_place_player(t_data *d);
 t_info_map		ft_init_map(void);
 /*load_images.c*/
 int				ft_load_images(t_data *d, t_info_map *info_map);
+int				ft_load_textures(t_data *d, t_info_map *t);
 void			ft_set_background(mlx_image_t *img);
+unsigned int	ft_img_color(mlx_image_t *tex, int x, int y);
 /*minimap.c*/
 void			ft_create_minipmap(t_data *d);
 void			ft_paint_minimap(t_data *d, size_t w, size_t h);
 void			ft_paint_miniplayer(t_data *d);
+void			ft_paint_miniview(t_data *d);
 /*key_control.c*/
 void			ft_move_right(t_data *d);
 void			ft_move_left(t_data *d);

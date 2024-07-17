@@ -2,6 +2,40 @@
 
 #include "cub3d.h"
 
+int	ft_minimap_limits(int x, int y, mlx_image_t *img)
+{
+	if (x > (int)img->width || x < 0 || y > (int)img->height || y < 0)
+		return (1);
+	return (0);
+}
+
+void	ft_paint_miniview(t_data *d)
+{
+	int	init_y;
+	int	init_x;
+	int	y;
+	int	x;
+	int	color;
+
+	init_y = (d->ply.y * d->maps.map_scale_y)
+		- d->imgs.mini_view->height / 2;
+	init_x = (d->ply.x * d->maps.map_scale_x)
+		- d->imgs.mini_view->width / 2;
+	y = -1;
+	while (++y < (int)d->imgs.mini_view->height)
+	{
+		x = -1;
+		while (++x < (int)d->imgs.mini_view->width)
+		{
+			if (ft_minimap_limits(init_x + x, init_y + y, d->imgs.mini_src))
+				color = GREY;
+			else
+				color = ft_img_color(d->imgs.mini_src, init_x + x, init_y + y);
+			mlx_put_pixel(d->imgs.mini_view, x, y, color);
+		}
+	}
+}
+
 void	ft_paint_miniplayer(t_data *d)
 {
 	float	player_x;
@@ -57,4 +91,7 @@ void	ft_create_minipmap(t_data *d)
 		/ (float)d->maps.pix_height;
 	ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
 	mlx_image_to_window(d->game, d->imgs.mini_src, 0, 0);
+	d->imgs.mini_src->enabled = false;
+	ft_paint_miniview(d);
+	mlx_image_to_window(d->game, d->imgs.mini_view, 0, 0);
 }
