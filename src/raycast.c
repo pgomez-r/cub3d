@@ -56,11 +56,11 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 {
 	int		i;
 
-	rc->incr_ang = FOV / (WIDTH - 1);
-	rc->curr_ang = d->ply.ang - (FOV / 2);
+	rc->incr_ang = d->ply.fov / (WIDTH - 1);
+	rc->curr_ang = d->ply.ang - (d->ply.fov / 2);
 	rc->curr_ang = ft_normalize_angle(rc->curr_ang);
 	ft_set_background(d);
-	i = N_RAYS;
+	i = WIDTH;
 	while (--i >= 0)
 	{
 		rc->ray_x = d->ply.x;

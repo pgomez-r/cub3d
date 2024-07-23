@@ -4,8 +4,11 @@
 
 void	ft_wall_render(t_data *d, t_rays *rc, int ray_num)
 {
+	float	plane;
+
+	plane = (WIDTH / 2) / tan(d->ply.fov / 2);
 	rc->wall_dist = ft_wall_distance(d, rc);
-	rc->wall_height = ft_wall_height(rc->wall_dist, PP);
+	rc->wall_height = ft_wall_height(rc->wall_dist, plane);
 	ft_wall_hitpoint(rc);
 	ft_draw_wall(d, rc, ray_num);
 }

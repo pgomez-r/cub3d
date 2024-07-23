@@ -25,15 +25,10 @@
 # define NAME "CVB3D"
 # define WIDTH 1000
 # define HEIGHT 800
-# define MINI_W (WIDTH / 4)
-# define MINI_H (HEIGHT / 4)
 # define CELL 64
-# define MINICELL (CELL / 4)
 # define MOV 4
 # define OFFSET 8
-# define FOV (60 * (M_PI / 180))
-# define N_RAYS (WIDTH)
-# define PP ((WIDTH / 2) / tan(FOV / 2))
+# define FOV 60
 # define NORTH (M_PI / 2)
 # define EAST (2 * M_PI)
 # define SOUTH ((3 * M_PI) / 2)
@@ -96,6 +91,7 @@ typedef struct s_player
 	double		x;
 	double		y;
 	double		ang;
+	float		fov;
 }	t_player;
 
 typedef struct s_render
