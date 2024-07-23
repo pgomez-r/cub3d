@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:11:09 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:21:04 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/23 08:28:59 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,6 @@ void			ft_texture_select(t_data *d);
 unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
 void			ft_wall_hitpoint(t_rays *rc);
 /***************check_args.c***************/
-static int		ft_check_file_name(char *argv);
 void			ft_check_args(int argc, char **argv);
 void			ft_check_rgb_color(char *color);
 void			ft_invalid_map(int mode);
@@ -216,10 +215,6 @@ void			ft_get_width(char *line, t_info_map *info_map);
 void			ft_get_map_size(int fd, t_info_map *info_map);
 /***************map.c***************/
 void			ft_check_valid_color(t_info_map *info_map);
-static void		ft_get_line_map(char *line, t_info_map *info_map, int y);
-static void		ft_get_map(char *line, t_info_map *info_map, int *n);
-static void		ft_get_line_info(char *line, int fd, t_info_map *info_map,
-					int *n);
 void			ft_get_map_info(char *file, t_info_map *info_map);
 
 #endif

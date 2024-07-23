@@ -1,10 +1,10 @@
-NO ./textures/test.png
+NO ./textures/White.png
 SO ./textures/Black.png
 WE ./textures/Yellow.png
 EA ./textures/Blue.png
 
-F 220,150,0
-C 5,130,240
+F 255,255,0
+C 255,206,235
 
 1111111111111111111111111
 1000000000110000000000001
