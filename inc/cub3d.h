@@ -29,10 +29,6 @@
 # define MOV 4
 # define OFFSET 8
 # define FOV 60
-# define NORTH (M_PI / 2)
-# define EAST (2 * M_PI)
-# define SOUTH ((3 * M_PI) / 2)
-# define WEST M_PI
 
 /*Colors*/
 # define BLACK 0x000000FF
