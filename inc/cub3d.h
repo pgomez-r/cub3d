@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/23 06:11:09 by pgruz11           #+#    #+#             */
+/*   Updated: 2024/07/23 06:21:04 by pgruz11          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -14,7 +25,6 @@
 # define NAME "CVB3D"
 # define WIDTH 1000
 # define HEIGHT 800
-# define ASPECT_RATIO ((float)WIDTH / (float)HEIGHT)
 # define MINI_W (WIDTH / 4)
 # define MINI_H (HEIGHT / 4)
 # define CELL 64
@@ -203,7 +213,8 @@ void			ft_check_closed_map(t_info_map *info_map);
 void			ft_get_texture(char **texture, t_info_map *info_map);
 void			ft_get_color(char **texture, t_info_map *info_map);
 void			ft_remove_nl(char **texture);
-void			ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n);
+void			ft_get_textures_and_colors(char *line,
+					t_info_map *info_map, int *n);
 void			ft_rgb_to_hex(t_info_map *info_map);
 /***************free.c***************/
 void			ft_free_split(char **split);
@@ -215,7 +226,8 @@ void			ft_get_map_size(int fd, t_info_map *info_map);
 void			ft_check_valid_color(t_info_map *info_map);
 static void		ft_get_line_map(char *line, t_info_map *info_map, int y);
 static void		ft_get_map(char *line, t_info_map *info_map, int *n);
-static void		ft_get_line_info(char *line, int fd, t_info_map *info_map, int *n);
+static void		ft_get_line_info(char *line, int fd, t_info_map *info_map,
+					int *n);
 void			ft_get_map_info(char *file, t_info_map *info_map);
 
 #endif
