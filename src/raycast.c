@@ -36,8 +36,6 @@ void	ft_init_delta_step(t_rays *rc)
 	rc->delta_y = CELL / fabs(sin(rc->curr_ang));
 }
 
-/*0 = the ray is moving horizontally, so the wall found is vertical in 2map
-	1 = the ray is moving vertically, so the wall found is horizontal in 2map*/
 int	ft_push_ray(t_rays *rc)
 {
 	if (rc->init_x < rc->init_y)

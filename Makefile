@@ -41,7 +41,6 @@ SRC      =	main.c \
 			check_args.c \
 			check_map.c \
 			colors_and_textures.c \
-			error.c \
 			free.c \
 			map_size.c \
 			map.c \

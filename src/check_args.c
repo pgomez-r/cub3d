@@ -49,3 +49,12 @@ void	ft_check_rgb_color(char *color)
 	if (i < len)
 		ft_invalid_map(1);
 }
+
+void	ft_invalid_map(int mode)
+{
+	if (mode == 1)
+	{
+		write (2, "Error: Invalid map\n", 19);
+		exit (1);
+	}
+}

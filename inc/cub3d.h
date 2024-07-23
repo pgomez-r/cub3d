@@ -12,18 +12,18 @@
 
 /*PRE-DEFINED VALUES FOR THE GAME*/
 # define NAME "CVB3D"
-# define WIDTH 1000 //Screen width in pixels
-# define HEIGHT 800 //Screen height in pixels
-# define ASPECT_RATIO ((float)WIDTH / (float)HEIGHT) //Aspect ratio of the screen
-# define MINI_W (WIDTH / 4) //Minimap width in pixels
-# define MINI_H (HEIGHT / 4) //Minimap height in pixels
-# define CELL 64 //Pixel size of each "cell" of the map - maybe we won't need to use it
-# define MINICELL (CELL / 4) //Pixel size of each "cell" of the minimap - maybe we won't need to use it
-# define MOV 4 //Number of pixels to move per step - will affect game speed
-# define OFFSET 8 //Player sides offset size in pixels
-# define FOV (60 * (M_PI / 180)) //Player's FieldOfView in gradiants -degrees * (M_PI / 180)-
-# define N_RAYS (WIDTH) //Number of rays to cast - has to be proportional to FOV value!
-# define PP ((WIDTH / 2) / tan(FOV / 2))//Projection plane
+# define WIDTH 1000
+# define HEIGHT 800
+# define ASPECT_RATIO ((float)WIDTH / (float)HEIGHT)
+# define MINI_W (WIDTH / 4)
+# define MINI_H (HEIGHT / 4)
+# define CELL 64
+# define MINICELL (CELL / 4)
+# define MOV 4
+# define OFFSET 8
+# define FOV (60 * (M_PI / 180))
+# define N_RAYS (WIDTH)
+# define PP ((WIDTH / 2) / tan(FOV / 2))
 # define NORTH (M_PI / 2)
 # define EAST (2 * M_PI)
 # define SOUTH ((3 * M_PI) / 2)
@@ -40,12 +40,12 @@
 # define GREY 0xA9A9A9FF
 
 /*Structs declaration*/
-typedef struct s_data		t_data; //general program data
-typedef struct s_map		t_map; //main map and mimimap info and value
-typedef struct s_visual		t_visual; //mlx textures, images and other visuals
-typedef struct s_player		t_player; //first person view player info and values
-typedef struct s_rays		t_rays; //raycasting variables and values
-typedef struct s_render		t_render; //variables used in wall texture rendering
+typedef struct s_data		t_data;
+typedef struct s_map		t_map;
+typedef struct s_visual		t_visual;
+typedef struct s_player		t_player;
+typedef struct s_rays		t_rays;
+typedef struct s_render		t_render;
 
 /*Structs definition*/
 typedef struct s_info_map
@@ -144,72 +144,78 @@ typedef struct s_data
 }	t_data;
 
 /*--------_SRC_FUNCTIONS_--------*/
-/*init.c*/
+/***************main.c***************/
+void			ft_game_hook(void *param);
+/***************init.c***************/
+void			ft_set_player_view(char view, t_data *d);
 void			ft_init(t_data *d);
 void			ft_map_parse(t_data *d, t_info_map *info_map);
 void			ft_place_player(t_data *d);
 t_info_map		ft_init_map(void);
-/*load_images.c*/
+/***************load_images.c***************/
 int				ft_load_images(t_data *d, t_info_map *info_map);
 void			ft_set_background(t_data *d);
 int				ft_load_textures(t_data *d, t_info_map *t);
 unsigned int	ft_img_color(mlx_image_t *tex, int x, int y);
-/*minimap.c*/
+/***************minimap.c***************/
 void			ft_create_minipmap(t_data *d);
 void			ft_paint_minimap(t_data *d, size_t w, size_t h);
 void			ft_paint_miniplayer(t_data *d);
 void			ft_paint_miniview(t_data *d);
-/*key_control.c*/
+int				ft_minimap_limits(int x, int y, mlx_image_t *img);
+/***************key_control.c***************/
 void			ft_move_right(t_data *d);
 void			ft_move_left(t_data *d);
 void			ft_move_down(t_data *d);
 void			ft_move_up(t_data *d);
 void			ft_key_control(t_data *d);
-/*key_control_utils.c*/
+/***************key_control_utils.c***************/
 int				ft_mov_validation(t_data *d, int x, int y);
 float			ft_normalize_angle(float angle);
-/*raycast.c*/
+/***************raycast.c***************/
 void			ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y);
 void			ft_init_ray_step(t_data *d, t_rays *rc);
 void			ft_init_delta_step(t_rays *rc);
 int				ft_push_ray(t_rays *rc);
-/*wall_render.c*/
+/***************wall_render.c***************/
 void			ft_wall_render(t_data *d, t_rays *rc, int ray_num);
 void			ft_draw_wall(t_data *d, t_rays *rc, int ray_num);
 void			ft_wall_tex_init(t_data *d, t_rays *rc);
 void			ft_wall_paint(t_data *d, t_render *tx, int x, int i);
-/*wall_render_utils.c*/
+/***************wall_render_utils.c***************/
 float			ft_wall_distance(t_data *d, t_rays *rc);
 int				ft_wall_height(float distance, float plane);
 void			ft_texture_select(t_data *d);
 unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
 void			ft_wall_hitpoint(t_rays *rc);
-/*main.c*/
-void			ft_game_hook(void *param);
-// check_args.c
+/***************check_args.c***************/
+static int		ft_check_file_name(char *argv);
 void			ft_check_args(int argc, char **argv);
 void			ft_check_rgb_color(char *color);
-// check_map.c
+void			ft_invalid_map(int mode);
+/***************check_map.c***************/
 int				ft_check_line_map(char *line, int mode);
 void			ft_check_all_ones(char *line);
 int				ft_check_valid_neighbor(t_info_map *info_map, int y, int x);
 void			ft_check_map_limits(t_info_map *info_map, int y);
 void			ft_check_closed_map(t_info_map *info_map);
-// colors_and_textures.c
+/***************colors_and_textures.c***************/
 void			ft_get_texture(char **texture, t_info_map *info_map);
 void			ft_get_color(char **texture, t_info_map *info_map);
+void			ft_remove_nl(char **texture);
 void			ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n);
 void			ft_rgb_to_hex(t_info_map *info_map);
-//error.c
-void			ft_invalid_map(int mode);
-// free.c
+/***************free.c***************/
 void			ft_free_split(char **split);
 void			ft_free_map(t_info_map *info_map);
-// map_size.c
+/***************map_size.c***************/
 void			ft_get_width(char *line, t_info_map *info_map);
 void			ft_get_map_size(int fd, t_info_map *info_map);
-// map.c
-void			ft_get_map_info(char *file, t_info_map *info_map);
+/***************map.c***************/
 void			ft_check_valid_color(t_info_map *info_map);
+static void		ft_get_line_map(char *line, t_info_map *info_map, int y);
+static void		ft_get_map(char *line, t_info_map *info_map, int *n);
+static void		ft_get_line_info(char *line, int fd, t_info_map *info_map, int *n);
+void			ft_get_map_info(char *file, t_info_map *info_map);
 
 #endif
