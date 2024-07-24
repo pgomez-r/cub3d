@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
+#    By: pgruz <pgruz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/07/24 20:09:21 by pgruz11          ###   ########.fr        #
+#    Updated: 2024/07/25 01:41:12 by pgruz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ endif
 
 NAME     = cub3D
 
-CC       = gcc -g
+CC       = gcc
 CFLAGS   = -Wall -Wextra -Werror -I./inc
 # BNAME    = 
 
@@ -64,7 +64,7 @@ all:	${NAME}
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) inc/cub3d.h
 	@echo "\033[0;33m\n	 ##### Checking/compiling Libft_42 library #####\n\033[0m"
 	@${MAKE} -C ./inc/libft
 	@echo "\033[0;33m\n	 ##### Checking/compiling MLX42 library #####\n\033[0m"
