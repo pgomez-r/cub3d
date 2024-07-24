@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:32 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:59:43 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 			mlx_loop(d.game);
 			mlx_terminate(d.game);
 		}
+		ft_free_textures(&d);
 	}
 	ft_free_map(&info_map);
 	return (d.exit_code);

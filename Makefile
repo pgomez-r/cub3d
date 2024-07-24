@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gfredes- <gfredes-@student.42malaga.com    +#+  +:+       +#+         #
+#    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/07/17 16:16:50 by gfredes-         ###   ########.fr        #
+#    Updated: 2024/07/24 20:09:21 by pgruz11          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ endif
 
 NAME     = cub3D
 
-CC       = gcc
+CC       = gcc -g
 CFLAGS   = -Wall -Wextra -Werror -I./inc
 # BNAME    = 
 

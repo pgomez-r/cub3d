@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/24 04:55:33 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:42:12 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_get_color(char **rgb_color, t_info_map *info_map)
 	if (!color || color[3])
 	{
 		write (2, "Error: Invalid map\n", 19);
+		ft_free_split(color);
 		exit (1);
 		return ;
 	}
@@ -70,6 +71,7 @@ void	ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n)
 	{
 		write (2, "Error: Invalid map\n", 19);
 		free (line);
+		ft_free_split(texture);
 		exit (1);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:11:09 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 08:28:59 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:58:16 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void			ft_check_rgb_color(char *color);
 void			ft_invalid_map(int mode);
 /***************check_map.c***************/
 int				ft_check_line_map(char *line, int mode);
-void			ft_check_all_ones(char *line);
+void			ft_check_all_ones(char *line, t_info_map *info_map);
 int				ft_check_valid_neighbor(t_info_map *info_map, int y, int x);
 void			ft_check_map_limits(t_info_map *info_map, int y);
 void			ft_check_closed_map(t_info_map *info_map);
@@ -210,6 +210,7 @@ void			ft_rgb_to_hex(t_info_map *info_map);
 /***************free.c***************/
 void			ft_free_split(char **split);
 void			ft_free_map(t_info_map *info_map);
+void			ft_free_textures(t_data *d);
 /***************map_size.c***************/
 void			ft_get_width(char *line, t_info_map *info_map);
 void			ft_get_map_size(int fd, t_info_map *info_map);

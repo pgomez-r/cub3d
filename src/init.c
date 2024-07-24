@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:19 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:00:24 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ void	ft_init(t_data *d)
 	d->ply.fov = FOV * (M_PI / 180);
 	d->rc.dpt = d;
 	d->tx.dpt = d;
+	d->imgs.ea_texture = NULL;
+	d->imgs.we_texture = NULL;
+	d->imgs.no_texture = NULL;
+	d->imgs.so_texture = NULL;
 }
 
 t_info_map	ft_init_map(void)

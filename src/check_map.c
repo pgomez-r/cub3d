@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:00 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:57:51 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_line_map(char *line, int mode)
 		return (0);
 }
 
-void	ft_check_all_ones(char *line)
+void	ft_check_all_ones(char *line, t_info_map *info_map)
 {
 	int	x;
 
@@ -52,6 +52,7 @@ void	ft_check_all_ones(char *line)
 			x++;
 		else
 		{
+			ft_free_map(info_map);
 			write (2, "Error: Invalid map\n", 19);
 			exit (1);
 			return ;
@@ -106,7 +107,7 @@ void	ft_check_closed_map(t_info_map *info_map)
 	while (y < info_map->map_height)
 	{
 		if (y == 0 || y == info_map->map_height - 1)
-			ft_check_all_ones(info_map->map[y]);
+			ft_check_all_ones(info_map->map[y], info_map);
 		else
 			ft_check_map_limits(info_map, y);
 		y++;
