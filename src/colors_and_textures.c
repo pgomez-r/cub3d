@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:04 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/24 04:55:33 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	ft_get_textures_and_colors(char *line, t_info_map *info_map, int *n)
 
 void	ft_rgb_to_hex(t_info_map *info_map)
 {
-	info_map->floor_hex = (info_map->floor[0] << 16) | (info_map->floor[1] << 8)
-		| info_map->floor[2];
-	info_map->ceiling_hex = (info_map->ceiling[0] << 16)
-		| (info_map->ceiling[1] << 8) | info_map->ceiling[2];
+	info_map->floor_hex = (info_map->floor[0] << 24)
+		| (info_map->floor[1] << 16) | info_map->floor[2] << 8 | 0xFF;
+	info_map->ceiling_hex = (info_map->ceiling[0] << 24)
+		| (info_map->ceiling[1] << 16) | info_map->ceiling[2] << 8 | 0xFF;
 	return ;
 }
