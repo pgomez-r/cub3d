@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:43 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/28 22:19:38 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y)
 	rc->incr_ang = d->ply.fov / (WIDTH - 1);
 	rc->curr_ang = d->ply.ang - (d->ply.fov / 2);
 	rc->curr_ang = ft_normalize_angle(rc->curr_ang);
-	ft_set_background(d);
+	//ft_set_background(d);
+	ft_background_render(d, &d->tx);
 	i = WIDTH;
 	while (--i >= 0)
 	{

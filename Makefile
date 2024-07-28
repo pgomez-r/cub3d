@@ -6,7 +6,7 @@
 #    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/07/24 20:09:21 by pgruz11          ###   ########.fr        #
+#    Updated: 2024/07/28 20:32:39 by pgruz11          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC      =	main.c \
 			minimap.c \
 			wall_render.c \
 			wall_render_utils.c \
+			background_render.c
 
 SRCS	 = $(addprefix $(SRC_PATH), $(SRC))
 OBJ		 = $(SRC:.c=.o)

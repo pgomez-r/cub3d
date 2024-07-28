@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:29 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/28 22:22:13 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ int	ft_load_textures(t_data *d, t_info_map *t)
 	d->imgs.we_texture = mlx_load_png(t->west_texture_path);
 	if (!d->imgs.we_texture)
 		return (ft_printf_error("Error loading textures\n"), -1);
+	d->imgs.floor_tex = mlx_load_png("./textures/floor.png");
+	if (!d->imgs.floor_tex)
+		return (ft_printf_error("Error loading textures\n"), -1);
+	d->imgs.ceiling_tex = mlx_load_png("./textures/ceiling.png");
+	if (!d->imgs.ceiling_tex)
+		return (ft_printf_error("Error loading textures\n"), -1);
 	return (0);
 }
 
@@ -75,6 +81,7 @@ int	ft_load_images(t_data *d, t_info_map *info_map)
 	{
 		d->imgs.game_view = mlx_new_image(d->game, WIDTH, HEIGHT);
 		ft_set_background(d);
+		ft_background_render(d, &d->tx);
 		mlx_image_to_window(d->game, d->imgs.game_view, 0, 0);
 		ft_create_minipmap(d);
 	}

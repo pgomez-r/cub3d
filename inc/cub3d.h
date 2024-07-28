@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:11:09 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/24 20:58:16 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/07/28 22:05:46 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ typedef struct s_player
 	double		y;
 	double		ang;
 	float		fov;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }	t_player;
 
 typedef struct s_render
@@ -99,6 +103,15 @@ typedef struct s_render
 	float			tex_step;
 	unsigned int	tex_color;
 	mlx_texture_t	*tex_ptr;
+	double			dir_x0;
+	double			dir_x1;
+	double			dir_y0;
+	double			dir_y1;
+	double			row_dist;
+	double			bg_step_x;
+	double			bg_step_y;
+	double			bg_x;
+	double			bg_y;
 }	t_render;
 
 typedef struct s_visual
@@ -113,6 +126,8 @@ typedef struct s_visual
 	mlx_texture_t	*so_texture;
 	mlx_texture_t	*ea_texture;
 	mlx_texture_t	*we_texture;
+	mlx_texture_t	*floor_tex;
+	mlx_texture_t	*ceiling_tex;
 }	t_visual;
 
 typedef struct s_rays
@@ -190,6 +205,10 @@ int				ft_wall_height(float distance, float plane);
 void			ft_texture_select(t_data *d);
 unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
 void			ft_wall_hitpoint(t_rays *rc);
+/***************background_render.c***************/
+void			ft_background_render(t_data *d, t_render *tx);
+void			ft_set_dir_and_plane(t_player *player, t_render *tx);
+void			ft_texture_mapping(t_render *tx, int y);
 /***************check_args.c***************/
 void			ft_check_args(int argc, char **argv);
 void			ft_check_rgb_color(char *color);
