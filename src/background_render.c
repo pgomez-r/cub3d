@@ -6,11 +6,32 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:06:56 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/28 23:47:12 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/03 12:43:32 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_print_render_values(t_data *d, t_render *tx, int y, int x)
+{
+	if (y == HEIGHT - 1 || y == HEIGHT / 2)
+	{
+		if (x == 0 || x == WIDTH - 1 || x == WIDTH / 2)
+		{
+			printf("\nY = %d X = %d\n", y, x);
+			printf("PLAYER STATS\n");
+			printf("x coord = %f y coord = %f\n", d->ply.x, d->ply.y);
+			printf("dir_x = %f dir_y = %f plane_x = %f plane_y = %f \n",
+				d->ply.dir_x, d->ply.dir_y, d->ply.plane_x, d->ply.plane_y);
+			printf("RAYS DIRECTIONS\n");
+			printf("dirRX0 = %f dirRX1 = %f dirRY0 = %f dirRY1 = %f\n",
+				tx->dir_x0, tx->dir_x1, tx->dir_y0, tx->dir_y1);
+			printf("bg_x = %f bg_y = %f\n", tx->bg_x, tx->bg_y);
+			printf("TEXTURE SCALING\ntex_x = %f, tex_y = %f\n",
+				tx->tex_x, tx->tex_y);
+		}
+	}
+}
 
 void	ft_texture_scaling(t_data *d, t_render *tx)
 {
@@ -40,13 +61,8 @@ void	ft_background_render(t_data *d, t_render *tx)
 		x = 0;
 		while (x < WIDTH)
 		{
-			// tx->tex_x = (int)(tx->bg_x * d->imgs.floor_tex->width)
-			// 	% d->imgs.floor_tex->width;
-			// tx->tex_y = (int)(tx->bg_y * d->imgs.floor_tex->height)
-			// 	% d->imgs.floor_tex->height;
-			// tx->bg_x += tx->bg_step_x;
-			// tx->bg_y += tx->bg_step_y;
 			ft_texture_scaling(d, tx);
+			ft_print_render_values(d, tx, y, x);
 			tx->tex_color = ft_get_pix_color(d->imgs.floor_tex,
 					tx->tex_x, tx->tex_y);
 			mlx_put_pixel(d->imgs.game_view, x, y, tx->tex_color);
@@ -58,16 +74,22 @@ void	ft_background_render(t_data *d, t_render *tx)
 
 void	ft_set_dir_and_plane(t_player *player, t_render *tx)
 {
-	double	angle;
-	double	fov;
+	double	fov_rad;
+	double	plane_length;
 
+	fov_rad = FOV * M_PI / 180.0;
+	plane_length = tan(fov_rad / 2);
 	(void)tx;
-	angle = player->ang * (M_PI / 180);
-	fov = FOV * (M_PI / 180);
-	player->dir_x = cos(angle);
-	player->dir_y = -sin(angle);
-	player->plane_x = cos(angle + M_PI / 2) * tan(fov / 2);
-	player->plane_y = -sin(angle + M_PI / 2) * tan(fov / 2);
+	if (cos(player->ang) > 0)
+		player->dir_x = 1;
+	else
+		player->dir_x = -1;
+	if (sin(player->ang) > 0)
+		player->dir_y = -1;
+	else
+		player->dir_y = 1;
+	player->plane_x = -player->dir_y * plane_length;
+	player->plane_y = player->dir_x * plane_length;
 }
 
 void	ft_texture_mapping(t_render *tx, int y)
