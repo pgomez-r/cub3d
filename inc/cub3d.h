@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:11:09 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/28 22:05:46 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/07 08:34:29 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ typedef struct s_data
 	t_render	tx;
 	mlx_t		*game;
 	int			exit_code;
+	double		flag_y;
 }	t_data;
 
 /*--------_SRC_FUNCTIONS_--------*/
@@ -207,8 +208,9 @@ unsigned int	ft_get_pix_color(mlx_texture_t *tex, int x, int y);
 void			ft_wall_hitpoint(t_rays *rc);
 /***************background_render.c***************/
 void			ft_background_render(t_data *d, t_render *tx);
-void			ft_set_dir_and_plane(t_player *player, t_render *tx);
+void			ft_set_dir_and_plane(t_player *player);
 void			ft_texture_mapping(t_render *tx, int y);
+void			ft_texture_scaling(t_data *d, t_render *tx);
 /***************check_args.c***************/
 void			ft_check_args(int argc, char **argv);
 void			ft_check_rgb_color(char *color);
