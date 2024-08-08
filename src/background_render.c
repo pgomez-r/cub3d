@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:06:56 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/07 14:26:52 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/07 19:06:56 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_print_render_values(t_data *d, t_render *tx, int y, int x)
 	{
 		if (x == WIDTH / 2 && d->ply.y != d->flag_y)
 		{
-			d->flag_y = d->ply.y;
+			d->flag_y = d->ply.x;
 			printf("\nY = %d X = %d\n", y, x);
 			printf("PLAYER STATS\n");
 			printf("x coord = %f y coord = %f\n", d->ply.x, d->ply.y);
@@ -80,20 +80,18 @@ void	ft_texture_mapping(t_render *tx, int y)
 	tx->row_dist = (double)(HEIGHT / 2) / (y - HEIGHT / 2);
 	tx->bg_step_x = tx->row_dist * (tx->dir_x1 - tx->dir_x0) / (double)WIDTH;
 	tx->bg_step_y = tx->row_dist * (tx->dir_y1 - tx->dir_y0) / (double)WIDTH;
-	tx->bg_x = (tx->row_dist * tx->dir_x0);
-	tx->bg_y = (tx->row_dist * tx->dir_y0);
+	tx->bg_x = (tx->row_dist * tx->dir_x0) + (tx->dpt->ply.x / WIDTH);
+	tx->bg_y = (tx->row_dist * tx->dir_y0) - (tx->dpt->ply.y / HEIGHT);
 }
 
 void	ft_texture_scaling(t_data *d, t_render *tx)
 {
-	tx->tex_x = (d->imgs.floor_tex->width * (tx->bg_x - floor(tx->bg_x)));
-		// % d->imgs.floor_tex->width;
+	tx->tex_x = d->imgs.floor_tex->width * (tx->bg_x - floor(tx->bg_x));
 	if (d->tx.tex_x < 0)
 		d->tx.tex_x += d->imgs.floor_tex->width;
 	else if (d->tx.tex_x >= d->imgs.floor_tex->width)
 		d->tx.tex_x -= d->imgs.floor_tex->width;
-	tx->tex_y = (d->imgs.floor_tex->height * (tx->bg_y - floor(tx->bg_y)));
-		// % d->imgs.floor_tex->height;
+	tx->tex_y = d->imgs.floor_tex->height * (tx->bg_y - floor(tx->bg_y));
 	if (d->tx.tex_y < 0)
 		d->tx.tex_y += d->imgs.floor_tex->height;
 	else if (d->tx.tex_y >= d->imgs.floor_tex->height)

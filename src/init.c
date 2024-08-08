@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/07 08:34:19 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/07 16:28:10 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_map_parse(t_data *d, t_info_map *info_map)
 	d->imgs.c_color = info_map->ceiling_hex;
 	d->imgs.f_color = info_map->floor_hex;
 	ft_place_player(d);
-	d->flag_y = d->ply.y;
+	d->flag_y = d->ply.x;
 }
 
 void	ft_init(t_data *d)

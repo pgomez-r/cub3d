@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/28 22:22:13 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/08 07:49:46 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_load_textures(t_data *d, t_info_map *t)
 	d->imgs.we_texture = mlx_load_png(t->west_texture_path);
 	if (!d->imgs.we_texture)
 		return (ft_printf_error("Error loading textures\n"), -1);
-	d->imgs.floor_tex = mlx_load_png("./textures/floor.png");
+	d->imgs.floor_tex = mlx_load_png("./textures/grass.png");
 	if (!d->imgs.floor_tex)
 		return (ft_printf_error("Error loading textures\n"), -1);
 	d->imgs.ceiling_tex = mlx_load_png("./textures/ceiling.png");
