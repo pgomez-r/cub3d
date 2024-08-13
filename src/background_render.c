@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:06:56 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/07 19:06:56 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/08 08:31:13 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_background_render(t_data *d, t_render *tx)
 	int				x;
 
 	ft_set_dir_and_plane(&d->ply);
-	y = HEIGHT / 2;
+	y = 0;
 	while (y < HEIGHT)
 	{
 		ft_texture_mapping(tx, y);
@@ -50,7 +50,7 @@ void	ft_background_render(t_data *d, t_render *tx)
 		while (x < WIDTH)
 		{
 			ft_texture_scaling(d, tx);
-			tx->tex_color = ft_get_pix_color(d->imgs.floor_tex,
+			tx->tex_color = ft_get_pix_color(tx->tex_ptr,
 					(int)tx->tex_x, (int)tx->tex_y);
 			mlx_put_pixel(d->imgs.game_view, x, y, tx->tex_color);
 			ft_print_render_values(d, tx, y, x);
@@ -73,6 +73,10 @@ void	ft_set_dir_and_plane(t_player *player)
 
 void	ft_texture_mapping(t_render *tx, int y)
 {
+	if (y < HEIGHT / 2)
+		tx->tex_ptr = tx->dpt->imgs.ceiling_tex;
+	else
+		tx->tex_ptr = tx->dpt->imgs.floor_tex;
 	tx->dir_x0 = tx->dpt->ply.dir_x + tx->dpt->ply.plane_x;
 	tx->dir_y0 = tx->dpt->ply.dir_y + tx->dpt->ply.plane_y;
 	tx->dir_x1 = tx->dpt->ply.dir_x - tx->dpt->ply.plane_x;
@@ -86,16 +90,16 @@ void	ft_texture_mapping(t_render *tx, int y)
 
 void	ft_texture_scaling(t_data *d, t_render *tx)
 {
-	tx->tex_x = d->imgs.floor_tex->width * (tx->bg_x - floor(tx->bg_x));
+	tx->tex_x = tx->tex_ptr->width * (tx->bg_x - floor(tx->bg_x));
 	if (d->tx.tex_x < 0)
-		d->tx.tex_x += d->imgs.floor_tex->width;
-	else if (d->tx.tex_x >= d->imgs.floor_tex->width)
-		d->tx.tex_x -= d->imgs.floor_tex->width;
-	tx->tex_y = d->imgs.floor_tex->height * (tx->bg_y - floor(tx->bg_y));
+		d->tx.tex_x += tx->tex_ptr->width;
+	else if (d->tx.tex_x >= tx->tex_ptr->width)
+		d->tx.tex_x -= tx->tex_ptr->width;
+	tx->tex_y = tx->tex_ptr->height * (tx->bg_y - floor(tx->bg_y));
 	if (d->tx.tex_y < 0)
-		d->tx.tex_y += d->imgs.floor_tex->height;
-	else if (d->tx.tex_y >= d->imgs.floor_tex->height)
-		d->tx.tex_y -= d->imgs.floor_tex->height;
+		d->tx.tex_y += tx->tex_ptr->height;
+	else if (d->tx.tex_y >= tx->tex_ptr->height)
+		d->tx.tex_y -= tx->tex_ptr->height;
 	tx->bg_x += tx->bg_step_x;
 	tx->bg_y += tx->bg_step_y;
 }
