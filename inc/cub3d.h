@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:11:09 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/07 08:34:29 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 06:34:49 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define HEIGHT 800
 # define CELL 64
 # define MOV 4
+# define FX_TIMER 8
 # define OFFSET 8
 # define FOV 60
 
@@ -92,6 +93,7 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	int			step_count;
 }	t_player;
 
 typedef struct s_render
@@ -122,6 +124,7 @@ typedef struct s_visual
 	mlx_image_t		*game_view;
 	mlx_image_t		*mini_src;
 	mlx_image_t		*mini_view;
+	mlx_image_t		*weapon;
 	mlx_texture_t	*no_texture;
 	mlx_texture_t	*so_texture;
 	mlx_texture_t	*ea_texture;
@@ -158,7 +161,8 @@ typedef struct s_data
 	t_render	tx;
 	mlx_t		*game;
 	int			exit_code;
-	double		flag_y;
+	double		cursor_x;
+	int			movement;
 }	t_data;
 
 /*--------_SRC_FUNCTIONS_--------*/
@@ -175,6 +179,10 @@ int				ft_load_images(t_data *d, t_info_map *info_map);
 void			ft_set_background(t_data *d);
 int				ft_load_textures(t_data *d, t_info_map *t);
 unsigned int	ft_img_color(mlx_image_t *tex, int x, int y);
+/***************load_images_utils.c***************/
+void			ft_weapon(t_data *d);
+mlx_image_t		*ft_resize_img(t_data *d, mlx_texture_t *src,
+					int width, int height);
 /***************minimap.c***************/
 void			ft_create_minipmap(t_data *d);
 void			ft_paint_minimap(t_data *d, size_t w, size_t h);
@@ -190,6 +198,8 @@ void			ft_key_control(t_data *d);
 /***************key_control_utils.c***************/
 int				ft_mov_validation(t_data *d, int x, int y);
 float			ft_normalize_angle(float angle);
+void			ft_mouse_hook(double x, double y, void *param);
+void			ft_movement_animation(t_data *d);
 /***************raycast.c***************/
 void			ft_raycast(t_data *d, t_rays *rc, float scale_x, float scale_y);
 void			ft_init_ray_step(t_data *d, t_rays *rc);

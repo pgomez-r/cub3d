@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/08 07:49:46 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 05:29:34 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ int	ft_load_images(t_data *d, t_info_map *info_map)
 	if (d->exit_code == 0)
 	{
 		d->imgs.game_view = mlx_new_image(d->game, WIDTH, HEIGHT);
-		ft_set_background(d);
 		ft_background_render(d, &d->tx);
 		mlx_image_to_window(d->game, d->imgs.game_view, 0, 0);
 		ft_create_minipmap(d);
+		ft_weapon(d);
 	}
 	return (d->exit_code);
 }

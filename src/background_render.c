@@ -6,35 +6,11 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 20:06:56 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/08 08:31:13 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 13:48:20 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_print_render_values(t_data *d, t_render *tx, int y, int x)
-{
-	if (y == HEIGHT - 1)
-	{
-		if (x == WIDTH / 2 && d->ply.y != d->flag_y)
-		{
-			d->flag_y = d->ply.x;
-			printf("\nY = %d X = %d\n", y, x);
-			printf("PLAYER STATS\n");
-			printf("x coord = %f y coord = %f\n", d->ply.x, d->ply.y);
-			printf("dir_x = %f dir_y = %f plane_x = %f plane_y = %f \n",
-				d->ply.dir_x, d->ply.dir_y, d->ply.plane_x, d->ply.plane_y);
-			printf("TEXTURE MAPPING\n");
-			printf("step_x = %f step_y = %f\n",
-				tx->bg_step_x, tx->bg_step_y);
-			printf("bg_x = %f bg_y = %f\n", tx->bg_x, tx->bg_y);
-			printf("TEXTURE SCALING\ntex_x = %f, tex_y = %f\n",
-				tx->tex_x, tx->tex_y);
-			printf("STEP_Y = ROW_DIST [%f] * (dir_y1 [%f] - dir_y0 [%f]) / [1000] == %f\n",
-				tx->row_dist, tx->dir_y1, tx->dir_y0, tx->bg_step_y);
-		}
-	}
-}
 
 void	ft_background_render(t_data *d, t_render *tx)
 {
@@ -53,7 +29,6 @@ void	ft_background_render(t_data *d, t_render *tx)
 			tx->tex_color = ft_get_pix_color(tx->tex_ptr,
 					(int)tx->tex_x, (int)tx->tex_y);
 			mlx_put_pixel(d->imgs.game_view, x, y, tx->tex_color);
-			ft_print_render_values(d, tx, y, x);
 			x++;
 		}
 		y++;
@@ -74,18 +49,23 @@ void	ft_set_dir_and_plane(t_player *player)
 void	ft_texture_mapping(t_render *tx, int y)
 {
 	if (y < HEIGHT / 2)
+	{
 		tx->tex_ptr = tx->dpt->imgs.ceiling_tex;
+		tx->row_dist = (double)(HEIGHT / 2) / (HEIGHT / 2 - y);
+	}
 	else
+	{
 		tx->tex_ptr = tx->dpt->imgs.floor_tex;
+		tx->row_dist = (double)(HEIGHT / 2) / (y - HEIGHT / 2);
+	}
 	tx->dir_x0 = tx->dpt->ply.dir_x + tx->dpt->ply.plane_x;
 	tx->dir_y0 = tx->dpt->ply.dir_y + tx->dpt->ply.plane_y;
 	tx->dir_x1 = tx->dpt->ply.dir_x - tx->dpt->ply.plane_x;
 	tx->dir_y1 = tx->dpt->ply.dir_y - tx->dpt->ply.plane_y;
-	tx->row_dist = (double)(HEIGHT / 2) / (y - HEIGHT / 2);
 	tx->bg_step_x = tx->row_dist * (tx->dir_x1 - tx->dir_x0) / (double)WIDTH;
 	tx->bg_step_y = tx->row_dist * (tx->dir_y1 - tx->dir_y0) / (double)WIDTH;
-	tx->bg_x = (tx->row_dist * tx->dir_x0) + (tx->dpt->ply.x / WIDTH);
-	tx->bg_y = (tx->row_dist * tx->dir_y0) - (tx->dpt->ply.y / HEIGHT);
+	tx->bg_x = (tx->row_dist * tx->dir_x0) + (tx->dpt->ply.x / CELL);
+	tx->bg_y = (tx->row_dist * tx->dir_y0) - (tx->dpt->ply.y / CELL);
 }
 
 void	ft_texture_scaling(t_data *d, t_render *tx)

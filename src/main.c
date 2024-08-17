@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/07 06:21:44 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 06:35:22 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_game_hook(void *param)
 	if (d->exit_code == 0)
 	{
 		ft_key_control(d);
+		ft_movement_animation(d);
 		ft_paint_minimap(d, d->maps.minimap_w, d->maps.minimap_h);
 		ft_paint_miniplayer(d);
 		ft_raycast(d, &d->rc, d->maps.map_scale_x, d->maps.map_scale_y);
@@ -44,6 +45,7 @@ int	main(int argc, char **argv)
 		if (d.exit_code == 0)
 		{
 			mlx_loop_hook(d.game, ft_game_hook, &d);
+			mlx_cursor_hook(d.game, ft_mouse_hook, &d);
 			mlx_loop(d.game);
 			mlx_terminate(d.game);
 		}

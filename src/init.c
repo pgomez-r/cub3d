@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/08/07 16:28:10 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 06:36:26 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ft_set_player_view(char view, t_data *d)
 		d->ply.ang = 2 * M_PI;
 	else if (view == 'W')
 		d->ply.ang = M_PI;
+	d->cursor_x = 0;
+	d->ply.step_count = 0;
+	d->movement = MOV * 2;
 }
 
 void	ft_place_player(t_data *d)
@@ -62,7 +65,6 @@ void	ft_map_parse(t_data *d, t_info_map *info_map)
 	d->imgs.c_color = info_map->ceiling_hex;
 	d->imgs.f_color = info_map->floor_hex;
 	ft_place_player(d);
-	d->flag_y = d->ply.x;
 }
 
 void	ft_init(t_data *d)

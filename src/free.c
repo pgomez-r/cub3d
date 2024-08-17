@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/24 20:47:20 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 04:22:43 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,8 @@ void	ft_free_textures(t_data *d)
 		mlx_delete_texture(d->imgs.no_texture);
 	if (d->imgs.so_texture)
 		mlx_delete_texture(d->imgs.so_texture);
+	if (d->imgs.ceiling_tex)
+		mlx_delete_texture(d->imgs.ceiling_tex);
+	if (d->imgs.floor_tex)
+		mlx_delete_texture(d->imgs.floor_tex);
 }

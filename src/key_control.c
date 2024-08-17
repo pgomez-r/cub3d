@@ -6,7 +6,7 @@
 /*   By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 06:56:52 by pgruz11           #+#    #+#             */
-/*   Updated: 2024/07/23 06:57:26 by pgruz11          ###   ########.fr       */
+/*   Updated: 2024/08/14 06:27:49 by pgruz11          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_move_up(t_data *d)
 	{
 		d->ply.x = x;
 		d->ply.y = y;
+		d->ply.step_count++;
 	}
 }
 
@@ -45,6 +46,7 @@ void	ft_move_down(t_data *d)
 	{
 		d->ply.x = x;
 		d->ply.y = y;
+		d->ply.step_count++;
 	}
 }
 
@@ -63,6 +65,7 @@ void	ft_move_left(t_data *d)
 	{
 		d->ply.x = x;
 		d->ply.y = y;
+		d->ply.step_count++;
 	}
 }
 
@@ -81,6 +84,7 @@ void	ft_move_right(t_data *d)
 	{
 		d->ply.x = x;
 		d->ply.y = y;
+		d->ply.step_count++;
 	}
 }
 
