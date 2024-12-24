@@ -6,7 +6,7 @@
 #    By: pgruz11 <pgruz11@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 21:49:44 by pgomez-r          #+#    #+#              #
-#    Updated: 2024/06/30 21:43:51 by pgruz11          ###   ########.fr        #
+#    Updated: 2024/08/14 06:18:31 by pgruz11          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CMAKE_CMD = cmake -B ./inc/MLX42/build ./inc/MLX42
 GLFW_LINK = -Iinclude -ldl -lglfw -pthread -lm
 endif
 
-NAME     = cub3d
+NAME     = cub3D
 
 CC       = gcc
 CFLAGS   = -Wall -Wextra -Werror -I./inc
@@ -32,7 +32,23 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 # B_PATH	 = bonus/
 
-SRC      = main.c init.c key_control.c load_images.c raycast.c
+SRC      =	main.c \
+			init.c \
+			key_control.c \
+			key_control_utils.c \
+			load_images.c \
+			load_images_utils.c \
+			raycast.c \
+			check_args.c \
+			check_map.c \
+			colors_and_textures.c \
+			free.c \
+			map_size.c \
+			map.c \
+			minimap.c \
+			wall_render.c \
+			wall_render_utils.c \
+			background_render.c
 
 SRCS	 = $(addprefix $(SRC_PATH), $(SRC))
 OBJ		 = $(SRC:.c=.o)
